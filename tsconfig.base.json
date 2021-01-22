@@ -14,7 +14,11 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@geometricpanda/storybook-addon-badges": [
+        "libs/storybook-addon-badges/src/index.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
