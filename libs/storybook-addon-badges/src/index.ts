@@ -1,1 +1,3 @@
-export * from './lib/storybook-addon-badges';
+export * from './lib/types';
+export * from './lib/constants';
+export * from './lib/register';

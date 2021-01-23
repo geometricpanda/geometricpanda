@@ -1,7 +1,8 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const rootMain = require('../../../.storybook/main');
 
 // Use the following syntax to add addons!
 // rootMain.addons.push('');
-rootMain.stories.push(...['../src/app/**/*.stories.mdx', '../src/app/**/*.stories.@(js|jsx|ts|tsx)'])
+rootMain.stories.push(...['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'])
 
 module.exports = rootMain;
