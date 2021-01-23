@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useLayoutEffect, useState } from 'react';
 import { Separator, Spaced } from '@storybook/components';
 
 import { TBadgesConfig } from './types';
@@ -8,7 +8,7 @@ export const Badges: FC<{ parameters: any }> = ({ parameters }) => {
   const [badges, setBadges] = useState<string[]>([]);
   const [badgesConfig, setBadgesConfig] = useState<TBadgesConfig>({});
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     setBadges(parameters.badges || []);
     setBadgesConfig(parameters.badgesConfig || {});
   }, [parameters.badges, parameters.badgesConfig]);
