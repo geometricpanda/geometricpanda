@@ -170,10 +170,40 @@
             ],
             "babelConfig": "@nrwl/react/plugins/bundle-babel",
             "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+            "globals": [
+              {
+                "moduleId": "styled-components",
+                "global": "styled-components"
+              },{
+                "moduleId": "react",
+                "global": "react"
+              },
+              {
+                "moduleId": "@storybook/addons",
+                "global": "@storybook/addons"
+              },
+              {
+                "moduleId": "@storybook/api",
+                "global": "@storybook/api"
+              },
+              {
+                "moduleId": "@storybook/components",
+                "global": "@storybook/components"
+              },
+              {
+                "moduleId": "@storybook/theming",
+                "global": "@storybook/theming"
+              }
+            ],
             "assets": [
               {
                 "glob": "README.md",
-                "input": ".",
+                "input": "libs/storybook-addon-badges",
+                "output": "."
+              },
+              {
+                "glob": "register.js",
+                "input": "libs/storybook-addon-badges/src",
                 "output": "."
               }
             ]

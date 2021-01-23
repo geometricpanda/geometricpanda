@@ -1,4 +1,7 @@
 module.exports = {
   stories: [],
-  addons: [],
+  addons: [
+    '@storybook/addon-docs',
+    '@geometricpanda/storybook-addon-badges',
+  ],
 };

@@ -1,4 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const rootWebpackConfig = require('../../../.storybook/webpack.config');
 /**
  * Export a function. Accept the base config as the only param.
@@ -16,7 +18,7 @@ module.exports = async ({ config, mode }) => {
     ? config.resolve.plugins.push(tsPaths)
     : (config.resolve.plugins = [tsPaths])
 
-  
+
   // Found this here: https://github.com/nrwl/nx/issues/2859
   // And copied the part of the solution that made it work
 
@@ -71,7 +73,7 @@ module.exports = async ({ config, mode }) => {
         ],
       }
     );
-  
-  
+
+
   return config;
 };

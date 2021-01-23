@@ -1,9 +1,19 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { BADGES } from './constants';
+
+<Meta title="Addon Badges/Docs"
+      parameters={{
+        badges: [
+          BADGES.BETA,
+          BADGES.DEPRECATED,
+          BADGES.OTHER,
+        ]
+      }} />
+
 # Storybook Addon Badges
 
 Using `@geometricpanda/storybook-addon-badges` you're able to add badges to
-your [Storybook](https://storybook.js.org) app.
-
-![Screenshot of Storybook](https://github.com/geometricpanda/storybook-addons/blob/main/libs/storybook-addon-badges/media/screenshot.png?raw=true)
+your Storybook app.
 
 ## Installation
 

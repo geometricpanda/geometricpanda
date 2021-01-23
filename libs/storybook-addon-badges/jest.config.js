@@ -9,4 +9,10 @@ module.exports = {
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   coverageDirectory: '../../coverage/libs/storybook-addon-badges',
+  coverageReporters: [
+    "json",
+    "lcov",
+    "text",
+    "clover"
+  ]
 };
