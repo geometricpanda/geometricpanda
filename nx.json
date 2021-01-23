@@ -35,12 +35,6 @@
         "storybook-addon-badges"
       ]
     },
-    "geometricpanda-e2e": {
-      "tags": [],
-      "implicitDependencies": [
-        "geometricpanda"
-      ]
-    },
     "storybook-addon-badges": {
       "tags": []
     }
