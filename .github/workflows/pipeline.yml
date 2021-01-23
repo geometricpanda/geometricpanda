@@ -1,0 +1,58 @@
+name: Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+
+  pipeline:
+    name: Build and Test
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        libs:
+          - storybook-addon-badges
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install dependencies
+        run: yarn install --non-interactive
+
+      - name: Lint - ${{ matrix.libs }}
+        run: yarn nx lint ${{ matrix.libs }}
+
+      - name: Unit Test - ${{ matrix.libs }}
+        run: yarn nx test ${{ matrix.libs }}
+
+      - name: Build Library - ${{ matrix.libs }}
+        run: yarn nx build ${{ matrix.libs }}
+
+      - name: Yarn Add Library - ${{ matrix.libs }}
+        run: yarn add ./dist/libs/${{ matrix.libs }}
+
+      - name: Build Storybook
+        run: yarn nx run geometricpanda:build-storybook
+
+      - name: Deploy 🚀
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: dist/storybook/geometricpanda
+          TARGET_FOLDER: storybook
+          CLEAN: true
