@@ -1,7 +1,7 @@
 {
   "npmScope": "geometricpanda",
   "affected": {
-    "defaultBase": "master"
+    "defaultBase": "main"
   },
   "implicitDependencies": {
     "workspace.json": "*",
