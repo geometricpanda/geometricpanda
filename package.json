@@ -27,10 +27,6 @@
   },
   "private": true,
   "dependencies": {
-    "@storybook/addons": "^6.1.15",
-    "@storybook/api": "^6.1.15",
-    "@storybook/components": "^6.1.15",
-    "@storybook/theming": "^6.1.15",
     "core-js": "^3.6.5",
     "document-register-element": "1.13.1",
     "react": "17.0.1",
@@ -44,6 +40,7 @@
     "@babel/preset-env": "7.9.6",
     "@babel/preset-react": "7.9.4",
     "@babel/preset-typescript": "7.9.0",
+    "@geometricpanda/storybook-addon-badges": "./libs/storybook-addon-badges/",
     "@nrwl/cli": "11.1.5",
     "@nrwl/eslint-plugin-nx": "11.1.5",
     "@nrwl/jest": "11.1.5",
