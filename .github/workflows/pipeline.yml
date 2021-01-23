@@ -43,14 +43,14 @@ jobs:
         run: yarn nx lint ${{ matrix.libs }}
 
       - name: Unit Test - ${{ matrix.libs }}
-        run: yarn nx test ${{ matrix.libs }}
+        run: yarn nx test ${{ matrix.libs }} --codeCoverage
 
-      - name: Check test coverage - ${{ matrix.libs }}
-        id: test-coverage
-        uses: johanvanhelden/gha-clover-test-coverage-check@v1
+      - name: Post test coverage - ${{ matrix.libs}}
+        if: ${{ failure() }}
+        uses: romeovs/lcov-reporter-action@v0.2.16
         with:
-          percentage: 95
-          filename: coverage/libs/${{ matrix.libs }}/clover.xml
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          lcov-file: ./coverage/libs/${{ matrix.libs }}/lcov.info
 
       - name: Build Library - ${{ matrix.libs }}
         run: yarn nx build ${{ matrix.libs }}
