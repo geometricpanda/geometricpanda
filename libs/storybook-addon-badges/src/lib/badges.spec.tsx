@@ -37,16 +37,36 @@ describe('Badges', () => {
     expect(tree.toJSON().length).toBe(2);
   });
 
-  it('should render badges', () => {
+  it('should not crash out if config is empty', () => {
+    const parameters = {};
+    const tree = renderer.create(<Badges parameters={parameters} />);
+    expect(tree.toJSON().length).toBeTruthy();
+  });
+
+  it('should render a badge', () => {
     const parameters = {
       badgesConfig,
       badges: [
-        BADGE_KEYS.BADGE
+        BADGE_KEYS.BADGE,
       ]
     };
 
     const tree = renderer.create(<Badges parameters={parameters} />);
     expect(tree.toJSON().length).toBe(3);
+  });
+
+
+  it('should render multiple badges', () => {
+    const parameters = {
+      badgesConfig,
+      badges: [
+        BADGE_KEYS.BADGE,
+        BADGE_KEYS.BADGE_TWO,
+      ]
+    };
+
+    const tree = renderer.create(<Badges parameters={parameters} />);
+    expect(tree.toJSON().length).toBe(4);
   });
 
 });
