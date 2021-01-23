@@ -45,6 +45,13 @@ jobs:
       - name: Unit Test - ${{ matrix.libs }}
         run: yarn nx test ${{ matrix.libs }}
 
+      - name: Check test coverage - ${{ matrix.libs }}
+        id: test-coverage
+        uses: johanvanhelden/gha-clover-test-coverage-check@v1
+        with:
+          percentage: 95
+          filename: coverage/libs/${{ matrix.libs }}/clover.xml
+
       - name: Build Library - ${{ matrix.libs }}
         run: yarn nx build ${{ matrix.libs }}
 
