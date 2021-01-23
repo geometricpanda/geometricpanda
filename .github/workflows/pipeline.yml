@@ -71,5 +71,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages
           FOLDER: dist/storybook/geometricpanda
-          TARGET_FOLDER: storybook
           CLEAN: true
