@@ -2,7 +2,7 @@
   "name": "@geometricpanda/storybook-addon-badges",
   "author": "geometricpanda",
   "description": "A Storybook addon which allows you to add stories to badges",
-  "version": "0.0.1",
+  "version": "0.0.1-alpha.0",
   "keywords": [
     "storybook-addons",
     "style",
@@ -13,12 +13,16 @@
   "storybook": {
     "displayName": "Badges",
     "unsupportedFrameworks": [],
-    "supportedFrameworks": ["React", "Angular", "Vue"],
+    "supportedFrameworks": [
+      "React",
+      "Angular",
+      "Vue"
+    ],
     "icon": "https://github.com/geometricpanda/geometricpanda/blob/main/libs/storybook-addon-badges/media/icon.png"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/geometricpanda/geometricpanda"
+    "url": "https://github.com/geometricpanda/geometricpanda/tree/main/libs/storybook-addon-badges"
   },
   "dependencies": {
     "@storybook/addons": "6.1.15",
