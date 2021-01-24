@@ -26,6 +26,11 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Set env.TAG
+        #if: ${{ github.ref_type == 'tag' }}
+        # run: echo "TAG=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+        run: echo "TAG=1.2.3" >> $GITHUB_ENV
+
       - name: Setup node
         uses: actions/setup-node@v2
         with:
@@ -46,6 +51,9 @@ jobs:
 #
 #      - name: Unit Test - ${{ matrix.libs }}
 #        run: yarn nx test ${{ matrix.libs }} --codeCoverage
+
+      - name: Build Library - ${{ matrix.libs }}
+        run: yarn nx build ${{ matrix.libs }}
 #
 #      - name: Post test coverage - ${{ matrix.libs}}
 #        if: ${{ failure() }}
@@ -53,9 +61,6 @@ jobs:
 #        with:
 #          github-token: ${{ secrets.GITHUB_TOKEN }}
 #          lcov-file: ./coverage/libs/${{ matrix.libs }}/lcov.info
-
-      - name: Build Library - ${{ matrix.libs }}
-        run: yarn nx build ${{ matrix.libs }}
 #
 #      - name: Yarn Add Library - ${{ matrix.libs }}
 #        run: yarn add ./dist/libs/${{ matrix.libs }}
@@ -74,6 +79,10 @@ jobs:
 #          BRANCH: gh-pages
 #          FOLDER: dist/storybook/geometricpanda
 #          CLEAN: true
+
+      - name: Ensure package.json version matches tag - ${{ matrix.libs}}
+        #if: ${{ github.ref_type == 'tag' }}
+        run: npm version ${{ env.TAG }} --prefix ./libs/${{ matrix.libs}} --allow-same-version
 
       - name: Release Package - ${{ matrix.libs }}
         #if: ${{ github.ref_type == 'tag' }}

@@ -13,7 +13,11 @@
   "storybook": {
     "displayName": "Badges",
     "unsupportedFrameworks": [],
-    "supportedFrameworks": ["React", "Angular", "Vue"],
+    "supportedFrameworks": [
+      "React",
+      "Angular",
+      "Vue"
+    ],
     "icon": "https://github.com/geometricpanda/geometricpanda/blob/main/libs/storybook-addon-badges/media/icon.png"
   },
   "repository": {
