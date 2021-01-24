@@ -2,8 +2,8 @@ name: Pipeline
 
 on:
   push:
-#    tags:
-#      - 'v*'
+    tags:
+      - 'v*'
     branches:
       - main
   pull_request:
@@ -27,9 +27,8 @@ jobs:
           fetch-depth: 0
 
       - name: Set env.TAG
-        #if: ${{ github.ref_type == 'tag' }}
-        # run: echo "TAG=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
-        run: echo "TAG=1.2.3" >> $GITHUB_ENV
+        if: ${{ github.ref_type == 'tag' }}
+        run: echo "TAG=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
 
       - name: Setup node
         uses: actions/setup-node@v2
@@ -45,50 +44,49 @@ jobs:
       - name: Install dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: yarn install --non-interactive
-#
-#      - name: Lint - ${{ matrix.libs }}
-#        run: yarn nx lint ${{ matrix.libs }}
-#
-#      - name: Unit Test - ${{ matrix.libs }}
-#        run: yarn nx test ${{ matrix.libs }} --codeCoverage
+
+      - name: Lint - ${{ matrix.libs }}
+        run: yarn nx lint ${{ matrix.libs }}
+
+      - name: Unit Test - ${{ matrix.libs }}
+        run: yarn nx test ${{ matrix.libs }} --codeCoverage
 
       - name: Build Library - ${{ matrix.libs }}
         run: yarn nx build ${{ matrix.libs }}
-#
-#      - name: Post test coverage - ${{ matrix.libs}}
-#        if: ${{ failure() }}
-#        uses: romeovs/lcov-reporter-action@v0.2.16
-#        with:
-#          github-token: ${{ secrets.GITHUB_TOKEN }}
-#          lcov-file: ./coverage/libs/${{ matrix.libs }}/lcov.info
-#
-#      - name: Yarn Add Library - ${{ matrix.libs }}
-#        run: yarn add ./dist/libs/${{ matrix.libs }}
-#
-#      - name: Build Storybook
-#        run: yarn nx run geometricpanda:build-storybook
-#
-#      - name: Yarn Remove Library - ${{ matrix.libs }}
-#        run: yarn remove @geometricpanda/${{ matrix.libs }}
-#
-#      - name: Deploy Docs 🚀
-#        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
-#        uses: JamesIves/github-pages-deploy-action@3.7.1
-#        with:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#          BRANCH: gh-pages
-#          FOLDER: dist/storybook/geometricpanda
-#          CLEAN: true
+
+      - name: Post test coverage - ${{ matrix.libs}}
+        if: ${{ failure() }}
+        uses: romeovs/lcov-reporter-action@v0.2.16
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          lcov-file: ./coverage/libs/${{ matrix.libs }}/lcov.info
+
+      - name: Yarn Add Library - ${{ matrix.libs }}
+        run: yarn add ./dist/libs/${{ matrix.libs }}
+
+      - name: Build Storybook
+        run: yarn nx run geometricpanda:build-storybook
+
+      - name: Yarn Remove Library - ${{ matrix.libs }}
+        run: yarn remove @geometricpanda/${{ matrix.libs }}
+
+      - name: Deploy Docs 🚀
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: dist/storybook/geometricpanda
+          CLEAN: true
 
       - name: Ensure package.json version matches tag - ${{ matrix.libs}}
-        #if: ${{ github.ref_type == 'tag' }}
+        if: ${{ github.ref_type == 'tag' }}
         run: npm version ${{ env.TAG }} --prefix ./libs/${{ matrix.libs}} --allow-same-version
 
       - name: Release Package - ${{ matrix.libs }}
-        #if: ${{ github.ref_type == 'tag' }}
+        if: ${{ github.ref_type == 'tag' }}
         uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}
           package: ./dist/libs/${{ matrix.libs }}/package.json
-          dry-run: true
           check-version: true
