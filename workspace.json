@@ -169,7 +169,7 @@
             ],
             "assets": [
               {
-                "glob": "README.md",
+                "glob": "*.md",
                 "input": "libs/storybook-addon-badges",
                 "output": "."
               },
