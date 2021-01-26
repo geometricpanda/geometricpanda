@@ -9,6 +9,7 @@
     "storybook",
     "addon",
     "layout",
+    "organize",
     "badges"
   ],
   "storybook": {
