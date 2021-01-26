@@ -1,0 +1,43 @@
+name: Build Latest Docs
+on: workflow_dispatch
+
+jobs:
+
+  pipeline:
+    name: Build Docs
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - uses: actions/cache@v2
+        id: cache
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+
+      - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: yarn install --non-interactive --frozen-lockfile
+
+      - name: Install libraries
+        run: |
+          yarn add @geometricpanda/storybook-addon-badges@latest --frozen-lockfile
+
+      - name: Build Storybook
+        run: yarn nx run geometricpanda:build-storybook
+
+      - name: Deploy Docs 🚀
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: dist/storybook/geometricpanda
+          CLEAN: true
