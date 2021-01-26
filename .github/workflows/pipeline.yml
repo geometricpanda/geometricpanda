@@ -56,12 +56,15 @@ jobs:
           lcov-file: ./coverage/libs/${{ matrix.libs }}/lcov.info
 
       - name: Yarn Add Library - ${{ matrix.libs }}
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
         run: yarn add ./dist/libs/${{ matrix.libs }}
 
       - name: Build Storybook
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
         run: yarn nx run geometricpanda:build-storybook
 
       - name: Yarn Remove Library - ${{ matrix.libs }}
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
         run: yarn remove @geometricpanda/${{ matrix.libs }}
 
       - name: Deploy Docs 🚀
