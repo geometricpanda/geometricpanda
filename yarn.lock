@@ -2093,7 +2093,19 @@
     ts-dedent "^2.0.0"
     util-deprecate "^1.0.2"
 
-"@storybook/addons@6.1.15", "@storybook/addons@^6.1.15":
+"@storybook/addon-google-analytics@^6.1.15":
+  version "6.1.15"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-google-analytics/-/addon-google-analytics-6.1.15.tgz#42b04781d651147a3f44d31cb3fb8998f81fe116"
+  integrity sha512-GUhEjtPD7jTS1xN+SRUCPKcUkdFAByNMwBtOV8gQgHUlc5gnN9lkdEuJJrlRwGdObS8kGgcavJC2+EiyClqbeg==
+  dependencies:
+    "@storybook/addons" "6.1.15"
+    "@storybook/core-events" "6.1.15"
+    core-js "^3.0.1"
+    global "^4.3.2"
+    react-ga "^2.5.7"
+    regenerator-runtime "^0.13.7"
+
+"@storybook/addons@6.1.15":
   version "6.1.15"
   resolved "https://registry.yarnpkg.com/@storybook/addons/-/addons-6.1.15.tgz#09eb8d962f58bd20b4ac2f83b515831c83226352"
   integrity sha512-ENyHapLFOG93VaoQXPX8O3IWjLRyVBox9C9P20LMruKX/SfXAXx20qsoAWKKPGssopyOin17aoQX9pj+lFmCZQ==
@@ -2108,7 +2120,7 @@
     global "^4.3.2"
     regenerator-runtime "^0.13.7"
 
-"@storybook/api@6.1.15", "@storybook/api@^6.1.15":
+"@storybook/api@6.1.15":
   version "6.1.15"
   resolved "https://registry.yarnpkg.com/@storybook/api/-/api-6.1.15.tgz#285ba42f7a8efcd3bd0e586a5e978487d826fbb4"
   integrity sha512-C4D08e2ZbSe62nNKtmh9YBraoWb2j6Chw8VCkuj91kuKHh3YDNc1gjj5Fi+KYZwIcy0EllzW3RFQs+YR1/Vg1g==
@@ -2187,7 +2199,7 @@
     core-js "^3.0.1"
     global "^4.3.2"
 
-"@storybook/components@6.1.15", "@storybook/components@^6.1.15":
+"@storybook/components@6.1.15":
   version "6.1.15"
   resolved "https://registry.yarnpkg.com/@storybook/components/-/components-6.1.15.tgz#b4a2af23ee6b9cba4c255191eae3d3463e29bfb7"
   integrity sha512-lPbA/zyBfctdlpDhRTcRFLWlZPJ3PB4+wI0FUvYs69iG3/bNbQPYu8vRmNhCZOsaGt+b+dik4Tfcth8Bu+eQug==
@@ -2416,7 +2428,7 @@
     regenerator-runtime "^0.13.7"
     source-map "^0.7.3"
 
-"@storybook/theming@6.1.15", "@storybook/theming@^6.1.15":
+"@storybook/theming@6.1.15":
   version "6.1.15"
   resolved "https://registry.yarnpkg.com/@storybook/theming/-/theming-6.1.15.tgz#01083ab89904dd959429b0b3fd1c76bd0ecc59ef"
   integrity sha512-88IdYaPzp4NMKf/GKBrPggxD6/d/lkdQ4SNowXxN9g9eONd9M7HtTbjuJGRCbGMJ52xGcbpj2exEnAqKQ2iodA==
@@ -12255,6 +12267,11 @@ react-fast-compare@^3.0.1, react-fast-compare@^3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-3.2.0.tgz#641a9da81b6a6320f270e89724fb45a0b39e43bb"
   integrity sha512-rtGImPZ0YyLrscKI9xTpV8psd6I8VAtjKCzQDlzyDvqJA8XOW78TXYQwNRNd8g8JZnDu8q9Fu/1v4HPAVwVdHA==
+
+react-ga@^2.5.7:
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/react-ga/-/react-ga-2.7.0.tgz#24328f157f31e8cffbf4de74a3396536679d8d7c"
+  integrity sha512-AjC7UOZMvygrWTc2hKxTDvlMXEtbmA0IgJjmkhgmQQ3RkXrWR11xEagLGFGaNyaPnmg24oaIiaNPnEoftUhfXA==
 
 react-helmet-async@^1.0.2:
   version "1.0.7"
