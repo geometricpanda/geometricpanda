@@ -19,7 +19,7 @@
       "Angular",
       "Vue"
     ],
-    "icon": "https://github.com/geometricpanda/geometricpanda/blob/main/libs/storybook-addon-badges/media/icon.png"
+    "icon": "https://raw.githubusercontent.com/geometricpanda/geometricpanda/main/libs/storybook-addon-badges/media/icon.png"
   },
   "repository": {
     "type": "git",
