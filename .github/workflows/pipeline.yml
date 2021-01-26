@@ -2,8 +2,6 @@ name: Pipeline
 
 on:
   push:
-    tags:
-      - 'v*'
     branches:
       - main
   pull_request:
@@ -25,11 +23,6 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-
-      - name: Set env.TAG
-        run: |
-          echo "TAG=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
-          echo "${GITHUB_REF#refs/*/}"
 
       - name: Setup node
         uses: actions/setup-node@v2
@@ -79,16 +72,3 @@ jobs:
           BRANCH: gh-pages
           FOLDER: dist/storybook/geometricpanda
           CLEAN: true
-
-      - name: Ensure package.json version matches tag - ${{ matrix.libs}}
-        if: ${{ github.ref_type == 'tag' }}
-        run: npm version ${{ env.TAG }} --prefix ./libs/${{ matrix.libs}} --allow-same-version
-
-      - name: Release Package - ${{ matrix.libs }}
-        if: ${{ github.ref_type == 'tag' }}
-        uses: JS-DevTools/npm-publish@v1
-        with:
-          token: ${{ secrets.NPM_TOKEN }}
-          package: ./dist/libs/${{ matrix.libs }}/package.json
-          check-version: true
-          access: public

@@ -1,0 +1,62 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+
+  pipeline:
+    name: Build and Release
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        libs:
+          - storybook-addon-badges
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Set env.TAG
+        run: |
+          echo "TAG=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+          echo "${GITHUB_REF#refs/*/}"
+
+      - name: Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - uses: actions/cache@v2
+        id: cache
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+
+      - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: yarn install --non-interactive
+
+      - name: Lint - ${{ matrix.libs }}
+        run: yarn nx lint ${{ matrix.libs }}
+
+      - name: Unit Test - ${{ matrix.libs }}
+        run: yarn nx test ${{ matrix.libs }} --codeCoverage
+
+      - name: Build Library - ${{ matrix.libs }}
+        run: yarn nx build ${{ matrix.libs }}
+
+      - name: Ensure package.json version matches tag - ${{ matrix.libs}}
+        run: npm version ${{ env.TAG }} --prefix ./libs/${{ matrix.libs}} --allow-same-version
+
+      - name: Release Package - ${{ matrix.libs }}
+        uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+          package: ./dist/libs/${{ matrix.libs }}/package.json
+          check-version: true
+          access: public
