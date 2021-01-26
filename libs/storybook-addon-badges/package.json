@@ -2,7 +2,7 @@
   "name": "@geometricpanda/storybook-addon-badges",
   "author": "geometricpanda",
   "description": "A Storybook addon which allows you to add stories to badges",
-  "version": "0.0.1-alpha.1",
+  "version": "0.0.1-alpha.2",
   "license": "MIT",
   "keywords": [
     "storybook-addons",
