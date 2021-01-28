@@ -56,6 +56,11 @@ jobs:
           name: codecov-umbrella
           fail_ci_if_error: true
 
+      - name: Run FOSSA scan and upload build data
+        uses: fossa-contrib/fossa-action@v1
+        with:
+          fossa-api-key: ${{ secrets.FOSSA_API_KEY }}
+
       - name: Post test coverage - ${{ matrix.libs}}
         if: ${{ failure() }}
         uses: romeovs/lcov-reporter-action@v0.2.16
