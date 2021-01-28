@@ -1,3 +1,5 @@
+[![npm version](https://badge.fury.io/js/%40geometricpanda%2Fstorybook-addon-badges.svg)](https://www.npmjs.com/package/@geometricpanda/storybook-addon-badges)
+
 # Storybook Addon Badges
 
 Using `@geometricpanda/storybook-addon-badges` you're able to add badges to
