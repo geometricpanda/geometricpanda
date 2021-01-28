@@ -48,6 +48,14 @@ jobs:
       - name: Build Library - ${{ matrix.libs }}
         run: yarn nx build ${{ matrix.libs }}
 
+      - uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          directory: coverage
+          flags: unittests
+          name: codecov-umbrella
+          fail_ci_if_error: true
+
       - name: Post test coverage - ${{ matrix.libs}}
         if: ${{ failure() }}
         uses: romeovs/lcov-reporter-action@v0.2.16
