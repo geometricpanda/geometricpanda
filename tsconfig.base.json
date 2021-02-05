@@ -17,6 +17,9 @@
     "paths": {
       "@geometricpanda/storybook-addon-badges": [
         "libs/storybook-addon-badges/src/index.ts"
+      ],
+      "@geometricpanda/storybook-addon-iframe": [
+        "libs/storybook-addon-iframe/src/index.ts"
       ]
     }
   },

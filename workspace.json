@@ -146,7 +146,8 @@
               {
                 "moduleId": "styled-components",
                 "global": "styled-components"
-              },{
+              },
+              {
                 "moduleId": "react",
                 "global": "react"
               },
@@ -188,6 +189,89 @@
           ],
           "options": {
             "jestConfig": "libs/storybook-addon-badges/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "storybook-addon-iframe": {
+      "root": "libs/storybook-addon-iframe",
+      "sourceRoot": "libs/storybook-addon-iframe/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/storybook-addon-iframe/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "build": {
+          "executor": "@nrwl/web:package",
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "options": {
+            "outputPath": "dist/libs/storybook-addon-iframe",
+            "tsConfig": "libs/storybook-addon-iframe/tsconfig.lib.json",
+            "project": "libs/storybook-addon-iframe/package.json",
+            "entryFile": "libs/storybook-addon-iframe/src/index.ts",
+            "external": [
+              "react",
+              "react-dom",
+              "react-is",
+              "styled-components"
+            ],
+            "babelConfig": "@nrwl/react/plugins/bundle-babel",
+            "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+            "globals": [
+              {
+                "moduleId": "styled-components",
+                "global": "styled-components"
+              },
+              {
+                "moduleId": "react",
+                "global": "react"
+              },
+              {
+                "moduleId": "@storybook/addons",
+                "global": "@storybook/addons"
+              },
+              {
+                "moduleId": "@storybook/api",
+                "global": "@storybook/api"
+              },
+              {
+                "moduleId": "@storybook/components",
+                "global": "@storybook/components"
+              },
+              {
+                "moduleId": "@storybook/theming",
+                "global": "@storybook/theming"
+              }
+            ],
+            "assets": [
+              {
+                "glob": "*.md",
+                "input": "libs/storybook-addon-iframe",
+                "output": "."
+              },
+              {
+                "glob": "register.js",
+                "input": "libs/storybook-addon-iframe/src",
+                "output": "."
+              }
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/storybook-addon-iframe"
+          ],
+          "options": {
+            "jestConfig": "libs/storybook-addon-iframe/jest.config.js",
             "passWithNoTests": true
           }
         }
