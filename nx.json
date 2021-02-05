@@ -1,14 +1,9 @@
 {
   "npmScope": "geometricpanda",
-  "affected": {
-    "defaultBase": "main"
-  },
+  "affected": { "defaultBase": "main" },
   "implicitDependencies": {
     "workspace.json": "*",
-    "package.json": {
-      "dependencies": "*",
-      "devDependencies": "*"
-    },
+    "package.json": { "dependencies": "*", "devDependencies": "*" },
     "tsconfig.base.json": "*",
     "tslint.json": "*",
     ".eslintrc.json": "*",
@@ -31,12 +26,9 @@
   "projects": {
     "geometricpanda": {
       "tags": [],
-      "implicitDependencies": [
-        "storybook-addon-badges"
-      ]
+      "implicitDependencies": ["storybook-addon-badges"]
     },
-    "storybook-addon-badges": {
-      "tags": []
-    }
+    "storybook-addon-badges": { "tags": [] },
+    "storybook-addon-iframe": { "tags": [] }
   }
 }

@@ -1,0 +1,12 @@
+{
+  "name": "@geometricpanda/storybook-addon-iframe",
+  "version": "0.0.1",
+  "dependencies": {
+    "@storybook/addons": "6.1.15",
+    "@storybook/api": "6.1.15",
+    "@storybook/components": "6.1.15",
+    "@storybook/theming": "6.1.15",
+    "react": "17.0.1",
+    "styled-components": "5.2.1"
+  }
+}
