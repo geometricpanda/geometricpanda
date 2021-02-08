@@ -7,7 +7,7 @@ export interface OtherTabProps {
   parameters: Story['parameters'] | Group['parameters']
 }
 
-export const IframeTab: React.FC<OtherTabProps> = ({ parameters }) => {
+export const IFrameTab: React.FC<OtherTabProps> = ({ parameters }) => {
   const [src, setSrc] = useState<string>(null);
 
   useLayoutEffect(() => {
@@ -15,6 +15,6 @@ export const IframeTab: React.FC<OtherTabProps> = ({ parameters }) => {
   }, [parameters]);
 
   return src
-    ? <EmbeddedIframeLayout src={src} />
-    : <GenericLayout icon={<NotFoundIcon/>}>Nothing to see</GenericLayout>;
+    ? <EmbeddedIframeLayout data-test-id={'EmbeddedIframeLayout'} src={src} />
+    : <GenericLayout data-test-id={'GenericLayout'} icon={<NotFoundIcon/>}>Nothing to see</GenericLayout>;
 };

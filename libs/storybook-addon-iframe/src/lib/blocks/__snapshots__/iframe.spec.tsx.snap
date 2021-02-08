@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`iFrame should snapshot 1`] = `
+.c0 {
+  background-color: white;
+  border: 0;
+  height: 100%;
+  width: 100%;
+}
+
+<iframe
+  className="c0"
+  src="https://www.google.com"
+/>
+`;

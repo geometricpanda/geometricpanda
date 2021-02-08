@@ -1,12 +1,12 @@
 import React from 'react';
 import { useStorybookApi } from '@storybook/api';
-import { IframeTab } from './blocks';
+import { IFrameTab } from './blocks';
 
 export const Container = () => {
   const api = useStorybookApi();
   const story = api.getCurrentStoryData();
 
   return story && story.parameters
-    ? <IframeTab parameters={story.parameters} />
+    ? <IFrameTab parameters={story.parameters} />
     : null;
 };
