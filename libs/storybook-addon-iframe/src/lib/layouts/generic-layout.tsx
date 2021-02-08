@@ -3,13 +3,13 @@ import styled from 'styled-components';
 
 const GenericIconLayoutWrapper = styled.div`
   width: 200px;
+  margin-bottom: 1rem;
 `;
 
 const GenericLayoutText = styled.h1`
   color: #999;
   font-size: 1rem;
   font-weight: bold;
-  margin-top: 1rem;
 `;
 
 const GenericLayoutContainer = styled.div`
@@ -22,18 +22,18 @@ const GenericLayoutContainer = styled.div`
 `;
 
 export interface GenericLayoutProps {
-  icon: ReactNode;
+  icon?: ReactNode;
 }
 
-export const GenericLayout: React.FC<GenericLayoutProps> = ({ children, icon }) => {
-  return (
-    <GenericLayoutContainer>
+export const GenericLayout: React.FC<GenericLayoutProps> = ({ children, icon }) => (
+  <GenericLayoutContainer>
+    {icon && (
       <GenericIconLayoutWrapper>
         {icon}
       </GenericIconLayoutWrapper>
-      <GenericLayoutText>
-        {children}
-      </GenericLayoutText>
-    </GenericLayoutContainer>
-  );
-};
+    )}
+    <GenericLayoutText>
+      {children}
+    </GenericLayoutText>
+  </GenericLayoutContainer>
+);

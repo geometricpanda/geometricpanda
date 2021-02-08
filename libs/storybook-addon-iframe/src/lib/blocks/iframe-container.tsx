@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export interface IFrameContainerProps {
-  loaded: boolean
+  loaded?: boolean
 }
 
 export const IFrameContainer = styled.div<IFrameContainerProps>`

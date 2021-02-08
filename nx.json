@@ -26,7 +26,10 @@
   "projects": {
     "geometricpanda": {
       "tags": [],
-      "implicitDependencies": ["storybook-addon-badges"]
+      "implicitDependencies": [
+        "storybook-addon-badges",
+        "storybook-addon-iframe"
+      ]
     },
     "storybook-addon-badges": { "tags": [] },
     "storybook-addon-iframe": { "tags": [] }

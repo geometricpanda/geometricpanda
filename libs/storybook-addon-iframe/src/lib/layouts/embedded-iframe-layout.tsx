@@ -46,19 +46,24 @@ export const EmbeddedIframeLayout: React.FC<EmbeddedIframeProps> = ({ src }) => 
       return (
         <>
           {state === LOADING_STATE.LOADING && (
-            <GenericLayout icon={<SpeedIcon />}>
+            <GenericLayout data-test-id={'loading'} icon={<SpeedIcon />}>
               Loading
             </GenericLayout>)
           }
           <IFrameContainer loaded={state === LOADING_STATE.LOADED}>
-            <IFrame onLoad={onLoad} src={src} scrolling={'auto'} />
+            <IFrame
+              data-test-loaded={state === LOADING_STATE.LOADED}
+              onLoad={onLoad}
+              scrolling={'auto'}
+              src={src}
+            />
           </IFrameContainer>
         </>
       );
 
     case LOADING_STATE.TIMEOUT:
       return (
-        <GenericLayout icon={<ErrorIcon />}>
+        <GenericLayout data-test-id={'error'} icon={<ErrorIcon />}>
           Sorry, this tab didn't load in time
         </GenericLayout>
       );

@@ -2,9 +2,6 @@
 import { BADGES } from '../src/stories/constants';
 
 export const parameters = {
-  iframeConfig: {
-    title: 'Some Title'
-  },
   badgesConfig: {
     [BADGES.BETA]: {
       contrast: '#FFF',

@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GenericLayout should render and icon and text 1`] = `
+<div
+  className="es7h93-2 fWpopI"
+>
+  <div
+    className="es7h93-0 fOAtDc"
+  >
+    <img
+      alt="test-icon"
+      src={null}
+    />
+  </div>
+  <h1
+    className="es7h93-1 eKtWtv"
+  >
+    <p>
+      Lorem Ipsum
+    </p>
+  </h1>
+</div>
+`;
+
+exports[`GenericLayout should render text 1`] = `
+<div
+  className="es7h93-2 fWpopI"
+>
+  <h1
+    className="es7h93-1 eKtWtv"
+  >
+    <p>
+      Lorem Ipsum
+    </p>
+  </h1>
+</div>
+`;
