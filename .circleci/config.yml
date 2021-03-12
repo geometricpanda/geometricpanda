@@ -60,4 +60,4 @@ jobs:
           destination: coverage/<< parameters.library >>
 
       - store_test_results:
-          path: coverage/libs/<< parameters.library >>/clover.xml
+          path: coverage/libs/<< parameters.library >>
