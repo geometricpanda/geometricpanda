@@ -8,7 +8,9 @@ workflows:
       - build-libraries:
           matrix:
             parameters:
-              library: [ "storybook-addon-badges", "storybook-addon-iframe" ]
+              library:
+                - "storybook-addon-badges"
+                - "storybook-addon-iframe"
 
       - test
 
@@ -20,10 +22,6 @@ jobs:
 
     steps:
       - checkout
-
-      - run:
-          name: Install Yarn
-          command: 'sudo npm install -g yarn'
 
       - restore_cache:
           key: dependency-cache-{{ checksum "yarn.lock" }}
@@ -64,10 +62,6 @@ jobs:
 
     steps:
       - checkout
-
-      - run:
-          name: Install Yarn
-          command: 'sudo npm install -g yarn'
 
       - restore_cache:
           key: dependency-cache-{{ checksum "yarn.lock" }}
