@@ -12,7 +12,40 @@ workflows:
                 - "storybook-addon-badges"
                 - "storybook-addon-iframe"
 
+      - build-storybook:
+          requires:
+            - build-and-test-libraries
 jobs:
+
+  build-storybook:
+    working_directory: ~/geometricpanda
+
+    docker:
+      - image: cimg/node:14.16.0
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          key: dependency-cache-{{ checksum "yarn.lock" }}
+
+      - run:
+          name: Install Dependencies
+          command: yarn --frozen-lockfile --non-interactive
+
+      - save_cache:
+          key: dependency-cache-{{ checksum "yarn.lock" }}
+          paths:
+            - ./node_modules
+
+      - attach_workspace:
+          at: /tmp/workspace
+
+      - run:
+          name: LS
+          command: |
+            ls -als;
+            ls dist/libs -als
 
   build-and-test-libraries:
     working_directory: ~/geometricpanda
@@ -53,13 +86,10 @@ jobs:
           name: Build
           command: yarn build << parameters.library >>
 
-      - store_artifacts:
-          path: dist/libs/<< parameters.library >>
-          destination: << parameters.library >>
-
-      - store_artifacts:
-          path: coverage/libs/<< parameters.library >>
-          destination: coverage/<< parameters.library >>
+      - persist_to_workspace:
+          root: /tmp/workspace
+          paths:
+            - dist/libs/<< parameters.library >>
 
       - store_test_results:
           path: coverage/libs/<< parameters.library >>
