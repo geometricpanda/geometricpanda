@@ -22,38 +22,33 @@ workflows:
           requires:
             - build-and-test-libraries
 
+      - deploy-approval:
+          type: approval
+          requires:
+            - build-storybook
+            - build-and-test-libraries
+
       - deploy-libraries:
+          filters:
+            tags:
+              only: /^v[0-9]+(\.[0-9]+)*$/
+
           matrix:
             parameters:
               library:
                 - "storybook-addon-badges"
                 - "storybook-addon-iframe"
-          requires:
-            - build-and-test-libraries
-          filters:
-            branches:
-              ignore: /.*/
-            tags:
-              only: /^v[0-9]+(\.[0-9]+)*$/
 
-      - docs:
-          type: approval
           requires:
-            - build-storybook
-          filters:
-            branches:
-              ignore: /.*/
-            tags:
-              only: /^v[0-9]+(\.[0-9]+)*$/
+            - deploy-approval
 
       - deploy-storybook:
-          requires:
-            - docs
           filters:
             branches:
-              ignore: /.*/
-            tags:
-              only: /^v[0-9]+(\.[0-9]+)*$/
+              only:
+                - main
+          requires:
+            - deploy-approval
 
 jobs:
 
