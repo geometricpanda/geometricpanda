@@ -51,9 +51,14 @@ jobs:
       - run:
           name: Install Libraries to Mono Repo
           command: |
+            depsStr = '';
+
             for library in << parameters.libraries >>; do
-              yarn add ./dist/libs/$library --frozen-lockfile
+              depsStr = "${depsStr} ./dist/libs/$library"
             done
+
+            echo $depsStr;
+            yarn add $depsStr;
 
   build-and-test-libraries:
     working_directory: ~/geometricpanda
