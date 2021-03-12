@@ -18,11 +18,17 @@ workflows:
 jobs:
 
   build-storybook:
+
+    parameters:
+      libraries:
+        type: string
+        description: Libraries to include in yarn link
+        default: "storybook-addon-badges storybook-addon-iframe"
+
     working_directory: ~/geometricpanda
 
     docker:
       - image: cimg/node:14.16.0
-
 
     steps:
       - checkout
@@ -43,10 +49,11 @@ jobs:
           at: ~/geometricpanda
 
       - run:
-          name: LS
+          name: Install Libraries to Mono Repo
           command: |
-            ls -als;
-            ls dist/libs -als
+            for library in << parameters.libraries >> {
+              yarn add ./dist/libs/$library --frozen-lockfile
+            }
 
   build-and-test-libraries:
     working_directory: ~/geometricpanda
