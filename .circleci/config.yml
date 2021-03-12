@@ -148,6 +148,7 @@ jobs:
       - run:
           name: Sync Package JSONS
           command: |
+            npm version << pipeline.git.tag >> &> /dev/null
             npx --no-install sync-json -v --property version --source package.json dist/libs/<< parameters.library >>/package.json
 
       - persist_to_workspace:
