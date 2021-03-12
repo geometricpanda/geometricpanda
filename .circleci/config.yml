@@ -45,15 +45,11 @@ jobs:
 
       - run:
           name: Test
-          command: yarn test << parameters.library >>
+          command: yarn test << parameters.library >> --codeCoverage
 
       - run:
           name: Build
           command: yarn build << parameters.library >>
-
-      - run:
-          name: List
-          command: ls -als
 
       - store_artifacts:
           path: dist/libs/<< parameters.library >>
