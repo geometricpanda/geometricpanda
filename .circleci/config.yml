@@ -83,7 +83,7 @@ jobs:
 
       - run:
           name: Build
-          command: yarn nx build << paramesters.library >>
+          command: yarn nx build << parameters.library >>
 
       - store_artifacts:
           path: dist/libs
