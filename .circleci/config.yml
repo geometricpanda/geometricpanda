@@ -1,7 +1,219 @@
 version: 2.1
-orbs:
-  node: circleci/node@3.0.0
+
+parameters:
+  libraries:
+    type: string
+    description: Libraries
+    default: "storybook-addon-badges"
+
 workflows:
-  node-tests:
+  version: 2
+
+  build-and-test:
     jobs:
-      - node/test
+      - build-and-test-libraries:
+          matrix:
+            parameters:
+              library:
+                - "storybook-addon-badges"
+          filters:
+            branches:
+              only: /.*/
+            tags:
+              only: /^v[0-9]+(\.[0-9]+)*$/
+
+      - build-storybook:
+          requires:
+            - build-and-test-libraries
+          filters:
+            branches:
+              only: /.*/
+            tags:
+              only: /^v[0-9]+(\.[0-9]+)*$/
+
+      - deploy-approval:
+          type: approval
+          filters:
+            branches:
+              only: main
+            tags:
+              only: /^v[0-9]+(\.[0-9]+)*$/
+
+          requires:
+            - build-storybook
+
+      - deploy-libraries:
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^v[0-9]+(\.[0-9]+)*$/
+
+          matrix:
+            parameters:
+              library:
+                - "storybook-addon-badges"
+
+          requires:
+            - deploy-approval
+
+      - deploy-storybook:
+          filters:
+            branches:
+              only:
+                - main
+          requires:
+            - deploy-approval
+
+jobs:
+
+  build-storybook:
+    working_directory: ~/geometricpanda
+
+    docker:
+      - image: cimg/node:14.16.0
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          key: dependency-cache-{{ checksum "yarn.lock" }}
+
+      - run:
+          name: Install Dependencies
+          command: yarn --frozen-lockfile --non-interactive
+
+      - save_cache:
+          key: dependency-cache-{{ checksum "yarn.lock" }}
+          paths:
+            - ./node_modules
+
+      - attach_workspace:
+          at: ~/geometricpanda
+
+      - run:
+          name: Install Libraries to Mono Repo
+          command: |
+            packagesArr=(<< pipeline.parameters.libraries >>)
+            packagesAcc="";
+
+            for package in "${packagesArr[@]}"
+            do
+                packagesAcc="${packagesAcc} ./dist/libs/${package}";
+            done
+
+            yarn add $packagesAcc --frozen-lockfile;
+
+      - run:
+          name: Build Storybook
+          command: yarn nx run geometricpanda:build-storybook:ci
+
+      - persist_to_workspace:
+          root: ~/geometricpanda
+          paths:
+            - dist/storybook
+
+  build-and-test-libraries:
+    working_directory: ~/geometricpanda
+
+    docker:
+      - image: cimg/node:14.16.0
+
+    parameters:
+      library:
+        type: string
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          key: dependency-cache-{{ checksum "yarn.lock" }}
+
+      - run:
+          name: Install Dependencies
+          command: yarn --frozen-lockfile --non-interactive
+
+      - save_cache:
+          key: dependency-cache-{{ checksum "yarn.lock" }}
+          paths:
+            - ./node_modules
+
+      - run:
+          name: Lint
+          command: yarn lint << parameters.library >>
+
+      - run:
+          name: Test
+          command: yarn test << parameters.library >> --codeCoverage --reporters=default --reporters=jest-junit
+          environment:
+            JEST_JUNIT_OUTPUT_DIR: coverage/libs/<< parameters.library >>
+
+      - run:
+          name: Build
+          command: yarn build << parameters.library >>
+
+      - run:
+          name: Sync Package JSONS
+          command: |
+            npm version << pipeline.git.tag >> &> /dev/null
+            npx --no-install sync-json -v --property version --source package.json dist/libs/<< parameters.library >>/package.json
+
+      - persist_to_workspace:
+          root: ~/geometricpanda
+          paths:
+            - dist/libs/<< parameters.library >>
+
+      - store_test_results:
+          path: coverage/libs/<< parameters.library >>
+
+  deploy-libraries:
+    working_directory: ~/geometricpanda
+
+    docker:
+      - image: cimg/node:14.16.0
+
+    parameters:
+      library:
+        type: string
+
+    steps:
+      - attach_workspace:
+          at: ~/geometricpanda
+
+      - run:
+          name: Authenticate with registry
+          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
+
+      - run:
+          name: Deploy Package
+          command: |
+            npm publish dist/libs/<< parameters.library >> --access public
+
+
+
+
+  deploy-storybook:
+    working_directory: ~/geometricpanda
+
+    docker:
+      - image: cimg/node:14.16.0
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          key: dependency-cache-{{ checksum "yarn.lock" }}
+
+      - attach_workspace:
+          at: ~/geometricpanda
+
+      - run:
+          name: Add Netlify CLI
+          command: |
+            npm init --force &> /dev/null;
+            yarn add netlify-cli --dev
+
+      - run:
+          name: Deploy to Netlify
+          command: |
+            npx --no-install netlify deploy --dir dist/storybook/geometricpanda --prod
