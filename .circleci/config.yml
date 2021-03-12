@@ -30,15 +30,31 @@ workflows:
                 - "storybook-addon-iframe"
           requires:
             - build-and-test-libraries
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^v[0-9]+(\.[0-9]+)*$/
 
-      - hold:
+      - docs:
           type: approval
           requires:
             - build-storybook
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^v[0-9]+(\.[0-9]+)*$/
 
       - deploy-storybook:
           requires:
-            - hold
+            - docs
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^v[0-9]+(\.[0-9]+)*$/
+
 jobs:
 
   build-storybook:
@@ -177,6 +193,10 @@ jobs:
           at: ~/geometricpanda
 
       - run:
+          name: Add Netlify CLI
+          command: yarn add global netlify-cli
+
+      - run:
           name: Deploy to Netlify
           command: |
-            npx netlify-cli --dir dist/storybook/geometricpanda --prod
+            netlify deploy --dir dist/storybook/geometricpanda --prod
