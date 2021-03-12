@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from 'react';
+import React, { useCallback, useLayoutEffect, useState } from 'react';
 import { IFrame } from '../blocks/iframe';
 import { IFrameContainer } from '../blocks/iframe-container';
 import { GenericLayout } from './generic-layout';
@@ -20,10 +20,10 @@ export const EmbeddedIframeLayout: React.FC<EmbeddedIframeProps> = ({ src }) => 
   const [state, setState] = useState<LOADING_STATE>(LOADING_STATE.INITIAL);
   const [errorTimeout, setErrorTimeout] = useState<NodeJS.Timeout>();
 
-  const onUnmount = () => {
+  const onUnmount = useCallback(() => {
     setState(LOADING_STATE.INITIAL);
     clearTimeout(errorTimeout);
-  };
+  }, [setState, errorTimeout]);
 
   const onLoad = () => {
     setState(LOADING_STATE.LOADED);
@@ -38,7 +38,7 @@ export const EmbeddedIframeLayout: React.FC<EmbeddedIframeProps> = ({ src }) => 
     setState(LOADING_STATE.LOADING);
     setErrorTimeout(setTimeout(onTimeout, 10000));
     return onUnmount;
-  }, [src]);
+  }, [onUnmount, setState, setErrorTimeout]);
 
   switch (state) {
     case LOADING_STATE.LOADING:
