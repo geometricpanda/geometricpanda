@@ -3,10 +3,6 @@ import { TBadgesConfig } from './types';
 import { getColor, getContrastColor, getTitle } from './helpers';
 import styled from 'styled-components'
 
-interface BadgeProps {
-  badge: string;
-  config: TBadgesConfig,
-}
 
 export const BadgeWrapper = styled.span`
   align-items: center;
@@ -15,6 +11,11 @@ export const BadgeWrapper = styled.span`
   height: 100%;
   user-select: none;
 `;
+
+interface BadgeProps {
+  badge: string;
+  config: TBadgesConfig,
+}
 
 export const BadgeInner = styled.span<BadgeProps>`
   border: 1px solid ${({ badge, config }) => getColor(badge, config)};

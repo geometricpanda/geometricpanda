@@ -21,26 +21,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Set env.TAG
-        run: |
-          echo "TAG=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
-          echo "${GITHUB_REF#refs/*/}"
-
-      - name: Setup node
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'
-
-      - uses: actions/cache@v2
-        id: cache
-        with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-
-      - name: Install dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: yarn install --non-interactive --frozen-lockfile
-
       - name: Lint - ${{ matrix.libs }}
         run: yarn nx lint ${{ matrix.libs }}
 
