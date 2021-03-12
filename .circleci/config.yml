@@ -1,5 +1,11 @@
 version: 2.1
 
+parameters:
+  libraries:
+    type: string
+    description: Libraries
+    default: "storybook-addon-badges storybook-addon-iframe"
+
 workflows:
   version: 2
 
@@ -15,16 +21,32 @@ workflows:
       - build-storybook:
           requires:
             - build-and-test-libraries
+
+      - deploy:
+          requires:
+            - build-storybook
 jobs:
 
+  deploy:
+    working_directory: ~/geometricpanda
+
+    docker:
+      - image: cimg/node:14.16.0
+
+    steps:
+      - restore_cache:
+          key: dependency-cache-{{ checksum "yarn.lock" }}
+
+      - attach_workspace:
+          at: ~/geometricpanda
+
+      - run:
+          name: LS
+          command: |
+            ls dist/libs -als;
+            ls dist/storybook -als;
+
   build-storybook:
-
-    parameters:
-      libraries:
-        type: string
-        description: Libraries to include in yarn link
-        default: "storybook-addon-badges storybook-addon-iframe"
-
     working_directory: ~/geometricpanda
 
     docker:
@@ -51,7 +73,7 @@ jobs:
       - run:
           name: Install Libraries to Mono Repo
           command: |
-            packagesArr=(<< parameters.libraries >>)
+            packagesArr=(<< pipeline.parameters.libraries >>)
             packagesAcc="";
 
             for package in "${packagesArr[@]}"
@@ -60,6 +82,17 @@ jobs:
             done
 
             yarn add $packagesAcc --frozen-lockfile;
+
+      - run:
+          name: Build Storybook
+          command: yarn nx run geometricpanda:build-storybook:ci
+
+      - persist_to_workspace:
+          root: ~/geometricpanda
+          paths:
+            - dist/storybook
+
+
 
   build-and-test-libraries:
     working_directory: ~/geometricpanda
@@ -99,6 +132,11 @@ jobs:
       - run:
           name: Build
           command: yarn build << parameters.library >>
+
+      - run:
+          name: Sync Package JSONS
+          command: |
+            npx --no-install sync-json -v --property version --source package.json dist/libs/<< parameters.library >>/package.json
 
       - persist_to_workspace:
           root: ~/geometricpanda
