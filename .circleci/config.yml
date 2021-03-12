@@ -51,8 +51,12 @@ jobs:
           name: Build
           command: yarn build << parameters.library >>
 
+      - run:
+          name: List
+          command: ls -als
+
       - store_artifacts:
-          path: dist/libs << parameters.library >>
+          path: dist/libs/<< parameters.library >>
           destination: << parameters.library >>
 
       - store_artifacts:
