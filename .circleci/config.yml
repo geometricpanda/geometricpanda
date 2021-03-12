@@ -178,7 +178,7 @@ jobs:
       - run:
           name: Deploy Package
           command: |
-            npm publish dist/libs/<< parameters.library >> --access public --dry-run
+            npm publish dist/libs/<< parameters.library >> --access public
 
 
 
