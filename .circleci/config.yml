@@ -8,9 +8,7 @@ workflows:
       - build-libraries:
           matrix:
             parameters:
-              library:
-                - "storybook-addon-badges"
-                - "storybook-addon-iframe"
+              library: [ "storybook-addon-badges", "storybook-addon-iframe" ]
 
       - test
 
