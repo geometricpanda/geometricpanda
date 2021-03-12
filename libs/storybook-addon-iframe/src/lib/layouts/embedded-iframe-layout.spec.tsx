@@ -1,13 +1,13 @@
 import { EmbeddedIframeLayout } from './embedded-iframe-layout';
 
+import renderer from 'react-test-renderer';
+import React from 'react';
+import { IFrame, IFrameContainer } from '../blocks';
+
 jest.mock('../blocks/iframe', () => ({
   IFrame: ({ onLoad }) => <div data-test-id={'iframe-mock'} />,
   default: null
 }));
-
-import renderer from 'react-test-renderer';
-import React from 'react';
-import { IFrame, IFrameContainer } from '../blocks';
 
 describe('EmbeddedIframeLayout', () => {
 
