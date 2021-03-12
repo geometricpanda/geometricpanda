@@ -4,7 +4,7 @@ parameters:
   libraries:
     type: string
     description: Libraries
-    default: "storybook-addon-badges"
+    default: "storybook-addon-badges storybook-addon-iframe"
 
 workflows:
   version: 2
@@ -16,6 +16,7 @@ workflows:
             parameters:
               library:
                 - "storybook-addon-badges"
+                - "storybook-addon-iframe"
 
       - build-storybook:
           requires:
@@ -40,6 +41,7 @@ workflows:
             parameters:
               library:
                 - "storybook-addon-badges"
+                - "storybook-addon-iframe"
 
           requires:
             - deploy-approval
