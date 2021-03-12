@@ -45,7 +45,9 @@ jobs:
 
       - run:
           name: Test
-          command: yarn test << parameters.library >> --codeCoverage
+          command: yarn test << parameters.library >> --codeCoverage --reporters=default --reporters=jest-junit
+          environment:
+            JEST_JUNIT_OUTPUT_DIR: coverage/libs/<< parameters.library >>
 
       - run:
           name: Build
@@ -60,4 +62,4 @@ jobs:
           destination: coverage/<< parameters.library >>
 
       - store_test_results:
-          path: coverage/libs/<< parameters.library >>/clover.xml
+          path: coverage/libs/<< parameters.library >>
