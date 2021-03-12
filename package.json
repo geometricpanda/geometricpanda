@@ -70,7 +70,6 @@
     "babel-jest": "26.2.2",
     "babel-loader": "8.1.0",
     "babel-plugin-styled-components": "1.10.7",
-    "chromatic": "^5.7.0",
     "dotenv": "6.2.0",
     "eslint": "7.10.0",
     "eslint-config-prettier": "6.0.0",

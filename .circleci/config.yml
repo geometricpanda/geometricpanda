@@ -22,32 +22,22 @@ workflows:
           requires:
             - build-and-test-libraries
 
-      - deploy:
+      - deploy-libraries:
+          matrix:
+            parameters:
+              library:
+                - "storybook-addon-badges"
+                - "storybook-addon-iframe"
+
+      - hold:
+          type: approval
           requires:
             - build-storybook
+
+      - deploy-storybook:
+          requires:
+            - hold
 jobs:
-
-  deploy:
-    working_directory: ~/geometricpanda
-
-    docker:
-      - image: cimg/node:14.16.0
-
-    steps:
-
-      - checkout
-
-      - restore_cache:
-          key: dependency-cache-{{ checksum "yarn.lock" }}
-
-      - attach_workspace:
-          at: ~/geometricpanda
-
-      - run:
-          name: LS
-          command: |
-            ls dist/libs -als;
-            ls dist/storybook -als;
 
   build-storybook:
     working_directory: ~/geometricpanda
@@ -94,8 +84,6 @@ jobs:
           root: ~/geometricpanda
           paths:
             - dist/storybook
-
-
 
   build-and-test-libraries:
     working_directory: ~/geometricpanda
@@ -148,3 +136,45 @@ jobs:
 
       - store_test_results:
           path: coverage/libs/<< parameters.library >>
+
+  deploy-libraries:
+    working_directory: ~/geometricpanda
+
+    docker:
+      - image: cimg/node:14.16.0
+
+    parameters:
+      library:
+        type: string
+
+    steps:
+      - attach_workspace:
+          at: ~/geometricpanda
+
+      - run:
+          name: Authenticate with registry
+          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
+
+      - run:
+          name: Deploy Package
+          command: |
+            npm publish dist/libs/<< parameters.library >> --access public --dry-run
+
+
+
+
+  deploy-storybook:
+    working_directory: ~/geometricpanda
+
+    docker:
+      - image: cimg/node:14.16.0
+
+    steps:
+
+      - attach_workspace:
+          at: ~/geometricpanda
+
+      - run:
+          name: Deploy to Netlify
+          command: |
+            npx netlify-cli --dir dist/storybook/geometricpanda --prod
