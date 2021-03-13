@@ -1,10 +1,10 @@
-export type TBadgeConfig = {
+export type BadgeConfig = {
   title?: string;
   color?: string;
   contrast?: string;
 }
 
-export interface TBadgesConfig {
-  [id: string]: TBadgeConfig,
+export interface BadgesConfig {
+  [id: string]: BadgeConfig,
 }
 

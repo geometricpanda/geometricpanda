@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import { TBadgesConfig } from './types';
-import { getColor, getContrastColor, getTitle } from './helpers';
+import { BadgeConfig, BadgesConfig } from '../types';
+import { getColor, getContrastColor, getTitle } from '../helpers/helpers';
 import styled from 'styled-components'
 
 
@@ -14,7 +14,7 @@ export const BadgeWrapper = styled.span`
 
 interface BadgeProps {
   badge: string;
-  config: TBadgesConfig,
+  config: BadgeConfig,
 }
 
 export const BadgeInner = styled.span<BadgeProps>`

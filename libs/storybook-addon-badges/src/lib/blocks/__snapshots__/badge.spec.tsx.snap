@@ -22,9 +22,9 @@ exports[`Badge should render a styled badge from config 1`] = `
 }
 
 .c1 {
-  border: 1px solid #018786;
-  color: #018786;
-  background-color: #6200EE;
+  border: 1px solid #000;
+  color: #000;
+  background-color: #FFF;
   padding: 2px 5px;
   border-radius: 3px;
   font-size: 0.75rem;
@@ -36,7 +36,7 @@ exports[`Badge should render a styled badge from config 1`] = `
   <span
     className="c1"
   >
-    Badge
+    badge
   </span>
 </span>
 `;
