@@ -4,15 +4,15 @@ import 'jest-styled-components';
 
 import { IFrameContainer } from './iframe-container';
 
-describe('iFrame Container', () => {
+describe('iFrame Manager', () => {
 
-  it('should have 0 height when loading', () => {
+  it('should have scale 0 when loaded', () => {
     const tree = renderer.create(<IFrameContainer loaded={false} />);
-    expect(tree.toJSON()).toHaveStyleRule('max-height', '0');
+    expect(tree.toJSON()).toHaveStyleRule('transform', 'scale(0)');
   });
 
-  it('should have 100% height when loaded', () => {
+  it('should have scale 1 when loaded', () => {
     const tree = renderer.create(<IFrameContainer loaded={true} />);
-    expect(tree.toJSON()).toHaveStyleRule('max-height', '100%');
+    expect(tree.toJSON()).toHaveStyleRule('transform', 'scale(1)');
   });
 });

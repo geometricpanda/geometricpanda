@@ -5,7 +5,8 @@ import { GenericLayout } from './generic-layout';
 import { ErrorIcon, SpeedIcon } from '../icons';
 
 export interface EmbeddedIframeProps {
-  src: string;
+  url: string;
+  timeout: number;
 }
 
 export enum LOADING_STATE {
@@ -15,7 +16,7 @@ export enum LOADING_STATE {
   TIMEOUT = 'timeout',
 }
 
-export const EmbeddedIframeLayout: React.FC<EmbeddedIframeProps> = ({ src }) => {
+export const EmbeddedIframeLayout: React.FC<EmbeddedIframeProps> = ({ url, timeout }) => {
 
   const [state, setState] = useState<LOADING_STATE>(LOADING_STATE.INITIAL);
   const errorTimeout = useRef<NodeJS.Timeout>(null);
@@ -36,9 +37,9 @@ export const EmbeddedIframeLayout: React.FC<EmbeddedIframeProps> = ({ src }) => 
 
   useLayoutEffect(() => {
     setState(LOADING_STATE.LOADING);
-    errorTimeout.current = setTimeout(onTimeout, 10000);
+    errorTimeout.current = setTimeout(onTimeout, timeout);
     return onUnmount;
-  }, [onUnmount, setState, errorTimeout]);
+  }, [onUnmount, setState, errorTimeout, timeout]);
 
   switch (state) {
     case LOADING_STATE.LOADING:
@@ -55,7 +56,7 @@ export const EmbeddedIframeLayout: React.FC<EmbeddedIframeProps> = ({ src }) => 
               data-test-loaded={state === LOADING_STATE.LOADED}
               onLoad={onLoad}
               scrolling={'auto'}
-              src={src}
+              src={url}
             />
           </IFrameContainer>
         </>
