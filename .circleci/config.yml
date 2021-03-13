@@ -26,7 +26,7 @@ workflows:
           type: approval
           filters:
             branches:
-              only: main
+              only: /release\/.*/
 
           requires:
             - build-storybook
@@ -35,7 +35,7 @@ workflows:
           type: approval
           filters:
             branches:
-              only: main
+              only: /release\/.*/
 
           requires:
             - build-and-test-libraries
@@ -43,8 +43,7 @@ workflows:
       - deploy-libraries:
           filters:
             branches:
-              only:
-                - main
+              only: /release\/.*/
 
           matrix:
             parameters:
@@ -58,8 +57,8 @@ workflows:
       - deploy-storybook:
           filters:
             branches:
-              only:
-                - main
+              only: /release\/.*/
+
           requires:
             - approve-storybook
 
