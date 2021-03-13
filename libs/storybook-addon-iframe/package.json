@@ -1,6 +1,35 @@
 {
   "name": "@geometricpanda/storybook-addon-iframe",
+  "author": "geometricpanda",
+  "description": "A Storybook addon which allows you to add iFrames to Stories",
   "version": "0.0.1",
+  "license": "MIT",
+  "keywords": [
+    "storybook-addons",
+    "storybook",
+    "addon",
+    "layout",
+    "appearance",
+    "code"
+  ],
+  "storybook": {
+    "displayName": "iFrame",
+    "unsupportedFrameworks": [],
+    "supportedFrameworks": [
+      "React",
+      "Angular",
+      "Vue"
+    ],
+    "icon": "https://raw.githubusercontent.com/geometricpanda/geometricpanda/main/libs/storybook-addon-iframe/media/icon.png"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/geometricpanda/geometricpanda/tree/main/libs/storybook-addon-iframe"
+  },
+  "bugs": {
+    "url": "https://github.com/geometricpanda/geometricpanda/issues"
+  },
+  "homepage": "https://geometricpanda-storybook.netlify.app/?path=/story/addon-iframe-docs--page",
   "dependencies": {
     "@storybook/addons": "6.1.15",
     "@storybook/api": "6.1.15",

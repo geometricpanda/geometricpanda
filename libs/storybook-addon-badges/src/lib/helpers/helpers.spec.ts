@@ -1,5 +1,5 @@
-import { TBadgeConfig, TBadgesConfig } from './types';
-import { defaultBadgeConfig } from './constants';
+import { BadgeConfig, BadgesConfig } from '../types';
+import { defaultBadgeConfig } from '../shared';
 import { getBadgeConfig, getColor, getContrastColor, getTitle } from './helpers';
 
 enum BADGE_KEYS {
@@ -10,7 +10,7 @@ enum BADGE_KEYS {
   UNKNOWN_BADGE = 'unknown'
 }
 
-const badgeConfig: TBadgesConfig = {
+const badgeConfig: BadgesConfig = {
   [BADGE_KEYS.BADGE]: {
     title: 'Badge',
     contrast: '#6200EE',
@@ -33,15 +33,15 @@ const badgeConfig: TBadgesConfig = {
 describe('getBadgeConfig', () => {
 
   it('should return the full badge config', () => {
-    const config = getBadgeConfig(BADGE_KEYS.BADGE, badgeConfig);
-    const expectedConfig: TBadgeConfig = badgeConfig[BADGE_KEYS.BADGE];
+    const config = getBadgeConfig(BADGE_KEYS.BADGE, badgeConfig[BADGE_KEYS.BADGE]);
+    const expectedConfig: BadgeConfig = badgeConfig[BADGE_KEYS.BADGE];
     expect(config).toEqual(expectedConfig);
   });
 
   it('should return a full badge config with key as title', () => {
-    const config = getBadgeConfig(BADGE_KEYS.NO_TITLE, badgeConfig);
+    const config = getBadgeConfig(BADGE_KEYS.NO_TITLE, badgeConfig[BADGE_KEYS.NO_TITLE]);
 
-    const expectedConfig: TBadgeConfig = {
+    const expectedConfig: BadgeConfig = {
       ...badgeConfig[BADGE_KEYS.NO_TITLE],
       title: BADGE_KEYS.NO_TITLE
     };
@@ -50,9 +50,9 @@ describe('getBadgeConfig', () => {
   });
 
   it('should return a full badge config with default colour', () => {
-    const config = getBadgeConfig(BADGE_KEYS.NO_COLOR, badgeConfig);
+    const config = getBadgeConfig(BADGE_KEYS.NO_COLOR, badgeConfig[BADGE_KEYS.NO_COLOR]);
 
-    const expectedConfig: TBadgeConfig = {
+    const expectedConfig: BadgeConfig = {
       ...badgeConfig[BADGE_KEYS.NO_COLOR],
       color: defaultBadgeConfig.color
     };
@@ -61,9 +61,9 @@ describe('getBadgeConfig', () => {
   });
 
   it('should return a full badge config with default contrast', () => {
-    const config = getBadgeConfig(BADGE_KEYS.NO_CONTRAST, badgeConfig);
+    const config = getBadgeConfig(BADGE_KEYS.NO_CONTRAST, badgeConfig[BADGE_KEYS.NO_CONTRAST]);
 
-    const expectedConfig: TBadgeConfig = {
+    const expectedConfig: BadgeConfig = {
       ...badgeConfig[BADGE_KEYS.NO_CONTRAST],
       contrast: defaultBadgeConfig.contrast
     };
@@ -75,36 +75,36 @@ describe('getBadgeConfig', () => {
 
 describe('getColor', () => {
   it('should return the configured color', () => {
-    const color = getColor(BADGE_KEYS.BADGE, badgeConfig);
+    const color = getColor(BADGE_KEYS.BADGE, badgeConfig[BADGE_KEYS.BADGE]);
     expect(color).toBe(badgeConfig[BADGE_KEYS.BADGE].color);
   });
 
   it('should return the default color', () => {
-    const color = getColor(BADGE_KEYS.UNKNOWN_BADGE, badgeConfig);
+    const color = getColor(BADGE_KEYS.UNKNOWN_BADGE, badgeConfig[BADGE_KEYS.UNKNOWN_BADGE]);
     expect(color).toBe(defaultBadgeConfig.color);
   });
 });
 
 describe('getContrastColor', () => {
   it('should return the configured contrast', () => {
-    const contrast = getContrastColor(BADGE_KEYS.BADGE, badgeConfig);
+    const contrast = getContrastColor(BADGE_KEYS.BADGE, badgeConfig[BADGE_KEYS.BADGE]);
     expect(contrast).toBe(badgeConfig[BADGE_KEYS.BADGE].contrast);
   });
 
   it('should return the default contrast', () => {
-    const contrast = getContrastColor(BADGE_KEYS.UNKNOWN_BADGE, badgeConfig);
+    const contrast = getContrastColor(BADGE_KEYS.UNKNOWN_BADGE, badgeConfig[BADGE_KEYS.UNKNOWN_BADGE]);
     expect(contrast).toBe(defaultBadgeConfig.contrast);
   });
 });
 
 describe('getTitle', () => {
   it('should return the configured title', () => {
-    const title = getTitle(BADGE_KEYS.BADGE, badgeConfig);
+    const title = getTitle(BADGE_KEYS.BADGE, badgeConfig[BADGE_KEYS.BADGE]);
     expect(title).toBe(badgeConfig[BADGE_KEYS.BADGE].title);
   });
 
   it('should return the key as title', () => {
-    const title = getTitle(BADGE_KEYS.UNKNOWN_BADGE, badgeConfig);
+    const title = getTitle(BADGE_KEYS.UNKNOWN_BADGE, badgeConfig[BADGE_KEYS.UNKNOWN_BADGE]);
     expect(title).toBe(BADGE_KEYS.UNKNOWN_BADGE);
   });
 });

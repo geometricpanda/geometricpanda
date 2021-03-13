@@ -7,6 +7,6 @@ export interface IFrameContainerProps {
 export const IFrameContainer = styled.div<IFrameContainerProps>`
   display: flex;
   height: 100%;
-  max-height: ${({ loaded }) => loaded ? '100%' : '0'};
-  transition: max-height 300ms linear;
+  transition: transform 300ms;
+  transform: ${({ loaded }) => loaded ? 'scale(1)' : 'scale(0)'};
 `;

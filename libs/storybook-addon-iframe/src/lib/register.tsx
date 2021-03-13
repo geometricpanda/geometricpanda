@@ -1,15 +1,15 @@
 import addons, { types } from '@storybook/addons';
 import React from 'react';
-import { ADDON_ID, PANEL_ID, PARAM_KEY } from './shared';
-import { Container } from './container';
+import { ADDON_ID, ADDON_TITLE, PARAM_KEY } from './shared';
+import { Manager } from './manager';
 
 addons.register(ADDON_ID, () => {
-  addons.add(PANEL_ID, {
-    type: types.TAB,
+  addons.add(ADDON_ID, {
     paramKey: PARAM_KEY,
-    title: 'Info',
-    match: () => true,
-    route: ({ storyId, refId }) => (refId ? `/iframe/${refId}_${storyId}` : `/iframe/${storyId}`),
-    render: () => <Container />
+    type: types.TAB,
+    title: ADDON_TITLE,
+    route: ({ storyId }) => `/iframe/${storyId}`,
+    match: ({ viewMode }) => viewMode === 'iframe',
+    render: Manager,
   });
 });

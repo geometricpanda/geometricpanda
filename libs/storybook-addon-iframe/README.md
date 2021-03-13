@@ -1,7 +1,129 @@
-# storybook-addon-iframe
+[![npm version](https://badge.fury.io/js/%40geometricpanda%2Fstorybook-addon-iframe.svg)](https://www.npmjs.com/package/@geometricpanda/storybook-addon-iframe)
 
-This library was generated with [Nx](https://nx.dev).
+# Storybook Addon iFrame
 
-## Running unit tests
+Using `@geometricpanda/storybook-addon-iframe` you're able to embed external content through a
+tab in the [Storybook](https://storybook.js.org) toolbar.
 
-Run `nx test storybook-addon-iframe` to execute the unit tests via [Jest](https://jestjs.io).
+![Screenshot of Storybook](https://github.com/geometricpanda/geometricpanda/blob/main/libs/storybook-addon-iframe/media/screenshot.png?raw=true)
+
+
+## Installation
+
+NPM:
+```shell
+npm install @geometricpanda/storybook-addon-iframe --save-dev
+```
+
+Yarn:
+```shell
+yarn add @geometricpanda/storybook-addon-iframe -D
+```
+
+## Configuration
+
+In your `.storybook/main.js` you'll need to load `@geometricpanda/storybook-addon-iframe` into Storybook:
+
+```js
+// .storybook/main.js
+module.exports = {
+  stories: [],
+  addons: [
+    '@geometricpanda/storybook-addon-iframe'
+  ],
+};
+```
+
+Optionally, you can define top level config `.storybook/preview.js`.
+
+```js
+// .storybook/preview.js
+import {addParameters} from '@storybook/react';
+
+addParameters({
+  iframe: {
+    url: 'https://www.bing.com',
+    timeout: 1000
+  }
+});
+```
+
+- `iframe.url` configures the default iFrame URL, this is optional.
+- `iframe.timeout` configures the Delay before the iFrame has considered not to have loaded , this is optional, defaulting to 10000 (or 10 seconds)
+
+_Tip: If you prefer, instead of using the `addParameters` function, you can also
+export `const parameters` containing a full parameters object._
+
+
+## Component Story Format (CSF)
+
+### All Stories
+
+The following will configure the iFrame to all components within your Story:
+
+```jsx
+export default {
+  title: 'Path/To/MyComponent',
+  parameters: {
+    iframe: {
+      url: 'https://www.bing.com'
+    }
+  }
+};
+
+const Template = () => (<h1>Hello World</h1>);
+
+export const FirstComponent = Template.bind({});
+export const SecondComponent = Template.bind({});
+export const ThirdComponent = Template.bind({});
+```
+
+### Individual Stories
+
+You can also selectively add iFrames to each Story:
+
+```jsx
+export default {
+  title: 'Path/To/MyComponent',
+};
+
+const Template = () => (<h1>Hello World</h1>);
+
+export const FirstComponent = Template.bind({});
+FirstComponent.parameters = {
+  iframe: {
+    url: 'https://www.google.com',
+  }
+};
+
+export const SecondComponent = Template.bind({});
+SecondComponent.parameters = {
+  iframe: {
+    url: 'https://www.bing.com',
+  }
+};
+
+export const ThirdComponent = Template.bind({});
+SecondComponent.parameters = {
+  iframe: {
+    url: 'https://www.yahoo.com',
+    timeout: 5000,
+  }
+};
+```
+
+## MDX
+
+In your `mdx` documentation you can add iFrames to your stories
+using the `<Meta>` component.
+
+```jsx
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Path/To/MyComponent"
+      parameters={{
+        iframe: {
+          url: 'htttps://www.google.com'
+        },
+      }} />
+```

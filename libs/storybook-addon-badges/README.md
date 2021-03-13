@@ -28,7 +28,7 @@ In your `.storybook/main.js` you'll need to load `@geometricpanda/storybook-addo
 module.exports = {
   stories: [],
   addons: [
-    '@geometricpanda/storybook-addon-badges/register'
+    '@geometricpanda/storybook-addon-badges'
   ],
 };
 ```

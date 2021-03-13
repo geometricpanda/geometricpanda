@@ -2,7 +2,7 @@
 
 exports[`EmbeddedIframeLayout should only show the iframe block on success 1`] = `
 <div
-  className="sc-1iqrqt3-0 cyMmoi"
+  className="sc-1iqrqt3-0 crXgSr"
 >
   <div
     data-test-id="iframe-mock"
@@ -124,7 +124,7 @@ Array [
     </h1>
   </div>,
   <div
-    className="sc-1iqrqt3-0 evWXoC"
+    className="sc-1iqrqt3-0 gCMOPm"
   >
     <div
       data-test-id="iframe-mock"
