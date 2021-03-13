@@ -178,6 +178,11 @@
                 "glob": "register.js",
                 "input": "libs/storybook-addon-badges/src",
                 "output": "."
+              },
+              {
+                "glob": "preset.js",
+                "input": "libs/storybook-addon-badges/src",
+                "output": "."
               }
             ]
           }
@@ -259,6 +264,11 @@
               },
               {
                 "glob": "register.js",
+                "input": "libs/storybook-addon-iframe/src",
+                "output": "."
+              },
+              {
+                "glob": "preset.js",
                 "input": "libs/storybook-addon-iframe/src",
                 "output": "."
               }
