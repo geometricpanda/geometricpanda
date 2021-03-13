@@ -21,7 +21,7 @@ workflows:
           requires:
             - build-and-test-libraries
 
-      - deploy-approval:
+      - approve-storybook:
           type: approval
           filters:
             branches:
@@ -29,6 +29,15 @@ workflows:
 
           requires:
             - build-storybook
+
+      - approve-libraries:
+          type: approval
+          filters:
+            branches:
+              only: main
+
+          requires:
+            - build-and-test-libraries
 
       - deploy-libraries:
           filters:
@@ -42,7 +51,7 @@ workflows:
                 - "storybook-addon-badges"
 
           requires:
-            - deploy-approval
+            - approve-libraries
 
       - deploy-storybook:
           filters:
@@ -50,7 +59,7 @@ workflows:
               only:
                 - main
           requires:
-            - deploy-approval
+            - approve-storybook
 
 jobs:
 
