@@ -2,9 +2,9 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import 'jest-styled-components';
 
-import { TBadgesConfig } from './types';
+import { BadgesConfig } from '../types';
 import { Badge, BadgeInner } from './badge';
-import { defaultBadgeConfig } from './constants';
+import { defaultBadgeConfig } from '../shared';
 
 enum BADGE_KEYS {
   BADGE = 'badge',
@@ -14,7 +14,7 @@ enum BADGE_KEYS {
   UNKNOWN_BADGE = 'unknown'
 }
 
-const badgeConfig: TBadgesConfig = {
+const badgeConfig: BadgesConfig = {
   [BADGE_KEYS.BADGE]: {
     title: 'Badge',
     contrast: '#6200EE',
@@ -51,7 +51,7 @@ describe('Badge', () => {
 
   describe.each(badgeMap)(`Badge - %s`, (_, key, title) => {
     it(`should have a title of ${title} `, () => {
-      const tree = renderer.create(<Badge badge={key} config={badgeConfig} />);
+      const tree = renderer.create(<Badge badge={key} config={badgeConfig[key]} />);
       expect(JSON.stringify(tree)).toContain(title);
     });
   });
@@ -67,12 +67,12 @@ describe('Badge', () => {
   describe.each(badgeInnerMap)('Badge Inner - %s', (_, key, contrast, color) => {
 
     it(`should have a color of ${color} `, () => {
-      const tree = renderer.create(<BadgeInner badge={key} config={badgeConfig} />);
+      const tree = renderer.create(<BadgeInner badge={key} config={badgeConfig[key]} />);
       expect(tree.toJSON()).toHaveStyleRule('color', color);
     });
 
     it(`should have a contrast color of ${color} `, () => {
-      const tree = renderer.create(<BadgeInner badge={key} config={badgeConfig} />);
+      const tree = renderer.create(<BadgeInner badge={key} config={badgeConfig[key]} />);
       expect(tree.toJSON()).toHaveStyleRule('background-color', contrast);
     });
 

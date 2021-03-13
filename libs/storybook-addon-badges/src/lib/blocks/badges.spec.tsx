@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { TBadgesConfig } from './types';
+import { BadgesConfig } from '../types';
 import { Badges } from './badges';
 
 enum BADGE_KEYS {
@@ -8,7 +8,7 @@ enum BADGE_KEYS {
   BADGE_TWO = 'badge-two',
 }
 
-const badgesConfig: TBadgesConfig = {
+const badgesConfig: BadgesConfig = {
   [BADGE_KEYS.BADGE]: {
     title: 'Badge',
     contrast: '#6200EE',
@@ -33,26 +33,26 @@ describe('Badges', () => {
       badges: []
     };
 
-    const tree = renderer.create(<Badges parameters={parameters} />);
-    expect(tree.toJSON().length).toBe(2);
+    const tree = renderer.create(<Badges {...parameters} />);
+    expect(Object.keys(tree.toJSON()).length).toBe(2);
   });
 
   it('should not crash out if config is empty', () => {
     const parameters = {};
-    const tree = renderer.create(<Badges parameters={parameters} />);
-    expect(tree.toJSON().length).toBeTruthy();
+    const tree = renderer.create(<Badges {...parameters} />);
+    expect(Object.keys(tree.toJSON()).length).toBeTruthy();
   });
 
   it('should render a badge', () => {
     const parameters = {
       badgesConfig,
       badges: [
-        BADGE_KEYS.BADGE,
+        BADGE_KEYS.BADGE
       ]
     };
 
-    const tree = renderer.create(<Badges parameters={parameters} />);
-    expect(tree.toJSON().length).toBe(3);
+    const tree = renderer.create(<Badges {...parameters} />);
+    expect(Object.keys(tree.toJSON()).length).toBe(3);
   });
 
 
@@ -61,12 +61,12 @@ describe('Badges', () => {
       badgesConfig,
       badges: [
         BADGE_KEYS.BADGE,
-        BADGE_KEYS.BADGE_TWO,
+        BADGE_KEYS.BADGE_TWO
       ]
     };
 
-    const tree = renderer.create(<Badges parameters={parameters} />);
-    expect(tree.toJSON().length).toBe(4);
+    const tree = renderer.create(<Badges {...parameters} />);
+    expect(Object.keys(tree.toJSON()).length).toBe(4);
   });
 
 });
