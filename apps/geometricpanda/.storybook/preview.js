@@ -13,5 +13,7 @@ export const parameters = {
       color: '#6200EE',
       title: 'Deprecated',
     },
-  }
+  },
 }
+
+
