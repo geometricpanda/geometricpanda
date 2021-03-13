@@ -2,7 +2,7 @@ import { EmbeddedIframeLayout } from './embedded-iframe-layout';
 
 import renderer from 'react-test-renderer';
 import React from 'react';
-import { IFrame, IFrameContainer } from '../blocks';
+import { IFrame } from '../blocks';
 
 jest.mock('../blocks/iframe', () => ({
   IFrame: ({ onLoad }) => <div data-test-id={'iframe-mock'} />,
@@ -12,7 +12,7 @@ jest.mock('../blocks/iframe', () => ({
 describe('EmbeddedIframeLayout', () => {
 
   it('should show a loading block', () => {
-    const tree = renderer.create(<EmbeddedIframeLayout src={'https://www.google.com'} />);
+    const tree = renderer.create(<EmbeddedIframeLayout url={'https://www.google.com'} timeout={1000} />);
     const testInstance = tree.root;
     const loadingBlocks = testInstance.findAllByProps({ 'data-test-id': 'loading' });
     expect(loadingBlocks.length).toBe(1);
@@ -22,7 +22,7 @@ describe('EmbeddedIframeLayout', () => {
   it('should show an error block if loading has not completed within 10 seconds', () => {
     jest.useFakeTimers();
 
-    const tree = renderer.create(<EmbeddedIframeLayout src={'https://www.google.com'} />);
+    const tree = renderer.create(<EmbeddedIframeLayout url={'https://www.google.com'} timeout={10000} />);
     const testInstance = tree.root;
 
     renderer.act(() => jest.advanceTimersByTime(10000));
@@ -37,7 +37,7 @@ describe('EmbeddedIframeLayout', () => {
   it('should only show the iframe block on success', () => {
     jest.useFakeTimers();
 
-    const tree = renderer.create(<EmbeddedIframeLayout src={'https://www.google.com'} />);
+    const tree = renderer.create(<EmbeddedIframeLayout url={'https://www.google.com'} timeout={10000}  />);
     const testInstance = tree.root;
 
     const iFrame = testInstance.findByType(IFrame);
