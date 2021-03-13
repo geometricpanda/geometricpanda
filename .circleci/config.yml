@@ -97,10 +97,12 @@ jobs:
             for package in "${packagesArr[@]}"
             do
                 packagesAcc="${packagesAcc} ./dist/libs/${package}";
+                cd ~/geometricpanda/dist/libs/${package};
+                yarn link;
             done
 
-            yarn add $packagesAcc --frozen-lockfile;
-
+            cd ~/geometricpanda;
+            yarn link @geometricpanda/${package} --frozen-lockfile;
       - run:
           name: Build Storybook
           command: yarn nx run geometricpanda:build-storybook:ci
