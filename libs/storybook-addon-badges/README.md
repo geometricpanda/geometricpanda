@@ -11,12 +11,12 @@ your [Storybook](https://storybook.js.org) app.
 
 NPM:
 ```shell
-npm install @geometricpanda/storybook-addon-badges --save-dev
+npm install @geometricpanda/storybook-addon-badges --save
 ```
 
 Yarn:
 ```shell
-yarn add @geometricpanda/storybook-addon-badges -D
+yarn add @geometricpanda/storybook-addon-badges
 ```
 
 ## Configuration

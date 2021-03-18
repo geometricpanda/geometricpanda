@@ -18,8 +18,6 @@ export const Manager: React.FC<ManagerProps> = ({ active }) => {
             ...api.getCurrentParameter<AddonParameters>(PARAM_KEY)
           };
 
-          console.log(parameters);
-
           return story && parameters?.url
             ? (
               <EmbeddedIframeLayout
