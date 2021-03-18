@@ -12,12 +12,12 @@ tab in the [Storybook](https://storybook.js.org) toolbar.
 
 NPM:
 ```shell
-npm install @geometricpanda/storybook-addon-iframe --save-dev
+npm install @geometricpanda/storybook-addon-iframe --save
 ```
 
 Yarn:
 ```shell
-yarn add @geometricpanda/storybook-addon-iframe -D
+yarn add @geometricpanda/storybook-addon-iframe
 ```
 
 ## Configuration
@@ -123,7 +123,7 @@ import { Meta } from '@storybook/addon-docs/blocks';
 <Meta title="Path/To/MyComponent"
       parameters={{
         iframe: {
-          url: 'htttps://www.google.com'
+          url: 'https://www.google.com'
         },
       }} />
 ```
