@@ -29,9 +29,7 @@ In your `.storybook/main.js` you'll need to load `@geometricpanda/storybook-addo
 // .storybook/main.js
 module.exports = {
   stories: [],
-  addons: [
-    '@geometricpanda/storybook-addon-iframe'
-  ],
+  addons: ['@geometricpanda/storybook-addon-iframe'],
 };
 ```
 
@@ -44,8 +42,8 @@ import { addParameters } from '@storybook/react';
 addParameters({
   iframe: {
     url: 'https://www.bing.com',
-    timeout: 1000
-  }
+    timeout: 1000,
+  },
 });
 ```
 
@@ -74,9 +72,9 @@ addParameters({
     canvas: {},
     'storybook/docs/panel': {},
     [ADDON_IFRAME]: {
-      title: 'External Content'
-    }
-  }
+      title: 'External Content',
+    },
+  },
 });
 ```
 
@@ -91,12 +89,12 @@ export default {
   title: 'Path/To/MyComponent',
   parameters: {
     iframe: {
-      url: 'https://www.bing.com'
-    }
-  }
+      url: 'https://www.bing.com',
+    },
+  },
 };
 
-const Template = () => (<h1>Hello World</h1>);
+const Template = () => <h1>Hello World</h1>;
 
 export const FirstComponent = Template.bind({});
 export const SecondComponent = Template.bind({});
@@ -112,20 +110,20 @@ export default {
   title: 'Path/To/MyComponent',
 };
 
-const Template = () => (<h1>Hello World</h1>);
+const Template = () => <h1>Hello World</h1>;
 
 export const FirstComponent = Template.bind({});
 FirstComponent.parameters = {
   iframe: {
     url: 'https://www.google.com',
-  }
+  },
 };
 
 export const SecondComponent = Template.bind({});
 SecondComponent.parameters = {
   iframe: {
     url: 'https://www.bing.com',
-  }
+  },
 };
 
 export const ThirdComponent = Template.bind({});
@@ -133,7 +131,7 @@ SecondComponent.parameters = {
   iframe: {
     url: 'https://www.yahoo.com',
     timeout: 5000,
-  }
+  },
 };
 ```
 
@@ -144,12 +142,14 @@ In your `mdx` documentation you can add iFrames to your stories using the `<Meta
 ```jsx
 import { Meta } from '@storybook/addon-docs/blocks';
 
-<Meta title="Path/To/MyComponent"
-      parameters={{
-        iframe: {
-          url: 'https://www.google.com'
-        },
-      }} />
+<Meta
+  title="Path/To/MyComponent"
+  parameters={{
+    iframe: {
+      url: 'https://www.google.com',
+    },
+  }}
+/>;
 ```
 
 ## Known Limitations

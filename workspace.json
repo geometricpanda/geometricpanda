@@ -8,9 +8,7 @@
       "targets": {
         "build": {
           "executor": "@nrwl/web:build",
-          "outputs": [
-            "{options.outputPath}"
-          ],
+          "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/apps/geometricpanda",
             "index": "apps/geometricpanda/src/index.html",
@@ -64,16 +62,12 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/geometricpanda/**/*.{ts,tsx,js,jsx}"
-            ]
+            "lintFilePatterns": ["apps/geometricpanda/**/*.{ts,tsx,js,jsx}"]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/apps/geometricpanda"
-          ],
+          "outputs": ["coverage/apps/geometricpanda"],
           "options": {
             "jestConfig": "apps/geometricpanda/jest.config.js",
             "passWithNoTests": true
@@ -126,20 +120,13 @@
         },
         "build": {
           "executor": "@nrwl/web:package",
-          "outputs": [
-            "{options.outputPath}"
-          ],
+          "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/libs/storybook-addon-badges",
             "tsConfig": "libs/storybook-addon-badges/tsconfig.lib.json",
             "project": "libs/storybook-addon-badges/package.json",
             "entryFile": "libs/storybook-addon-badges/src/index.ts",
-            "external": [
-              "react",
-              "react-dom",
-              "react-is",
-              "styled-components"
-            ],
+            "external": ["react", "react-dom", "react-is", "styled-components"],
             "babelConfig": "@nrwl/react/plugins/bundle-babel",
             "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
             "globals": [
@@ -189,9 +176,7 @@
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/storybook-addon-badges"
-          ],
+          "outputs": ["coverage/libs/storybook-addon-badges"],
           "options": {
             "jestConfig": "libs/storybook-addon-badges/jest.config.js",
             "passWithNoTests": true
@@ -214,20 +199,13 @@
         },
         "build": {
           "executor": "@nrwl/web:package",
-          "outputs": [
-            "{options.outputPath}"
-          ],
+          "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/libs/storybook-addon-iframe",
             "tsConfig": "libs/storybook-addon-iframe/tsconfig.lib.json",
             "project": "libs/storybook-addon-iframe/package.json",
             "entryFile": "libs/storybook-addon-iframe/src/index.ts",
-            "external": [
-              "react",
-              "react-dom",
-              "react-is",
-              "styled-components"
-            ],
+            "external": ["react", "react-dom", "react-is", "styled-components"],
             "babelConfig": "@nrwl/react/plugins/bundle-babel",
             "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
             "globals": [
@@ -277,9 +255,7 @@
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/storybook-addon-iframe"
-          ],
+          "outputs": ["coverage/libs/storybook-addon-iframe"],
           "options": {
             "jestConfig": "libs/storybook-addon-iframe/jest.config.js",
             "passWithNoTests": true

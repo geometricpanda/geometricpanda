@@ -1,9 +1,21 @@
 {
-  "extends": [
-    "plugin:@nrwl/nx/react",
-    "../../.eslintrc.json"
-  ],
-  "ignorePatterns": [
-    "!**/*"
+  "extends": ["plugin:@nrwl/nx/react", "../../.eslintrc.json"],
+  "ignorePatterns": ["!**/*", ".storybook/*"],
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "parserOptions": {
+        "project": ["apps/geometricpanda/tsconfig.*?.json"]
+      },
+      "rules": {}
+    },
+    {
+      "files": ["*.ts", "*.tsx"],
+      "rules": {}
+    },
+    {
+      "files": ["*.js", "*.jsx"],
+      "rules": {}
+    }
   ]
 }
