@@ -34,7 +34,7 @@ module.exports = {
   stories: [],
   addons: [
     '@geometricpanda/storybook-addon-iframe'
-  ],
+  ]
 };
 ```
 
@@ -58,6 +58,30 @@ addParameters({
 _Tip: If you prefer, instead of using the `addParameters` function, you can also
 export `const parameters` containing a full parameters object._
 
+
+## Renaming the Tab
+
+Whilst potentially not the most intuitive way of renaming the tab, you're able to use Storybook's standard `previewTabs`
+functionality to rename the tab.
+
+Due to how `previewTabs` works you may also need to define `canvas` and `storybook/docs/panel` in order to maintain the
+default order of tabs (or configure how you wish).
+
+```js
+// .storybook/preview.js
+import { addParameters } from '@storybook/react';
+import { ADDON_ID as ADDON_IFRAME } from '@geometricpanda/storybook-addon-iframe';
+
+addParameters({
+  previewTabs: {
+    canvas: {},
+    'storybook/docs/panel': {},
+    [ADDON_IFRAME]: {
+      title: 'External Content'
+    }
+  }
+});
+```
 
 ## Component Story Format (CSF)
 
@@ -131,3 +155,10 @@ import { Meta } from '@storybook/addon-docs/blocks';
         },
       }} />
 ```
+
+## Known Limitations
+
+Unfortunately due to Browser security concerns when using iFrame content served with the `x-frame-options: DENY` header,
+the iFrame won't show the content and will instead show the browser's broken pane window. I did consider trying to resolve
+this gracefully but ultimately felt it would impair the developer debug experience.
+
