@@ -31,11 +31,11 @@
   },
   "homepage": "https://geometricpanda-storybook.netlify.app/?path=/story/addon-badges-docs--page",
   "dependencies": {
-    "@storybook/addons": "6.1.15",
-    "@storybook/api": "6.1.15",
-    "@storybook/components": "6.1.15",
-    "@storybook/theming": "6.1.15",
-    "react": "17.0.1",
+    "@storybook/addons": "6.2.9",
+    "@storybook/api": "6.2.9",
+    "@storybook/components": "6.2.9",
+    "@storybook/theming": "6.2.9",
+    "react": "17.0.2",
     "styled-components": "5.2.1"
   }
 }
