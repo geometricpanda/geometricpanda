@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.0.4
+
+### Features
+- __@geometricpanda/storybook-addon-badges__: Adds a suite of default badge styles [#20](https://github.com/geometricpanda/geometricpanda/issues/20)
+- __@geometricpanda/storybook-addon-badges__: Updates style of badges to be more prominent [#20](https://github.com/geometricpanda/geometricpanda/issues/20)
+
 ## 0.0.3
 
 ### Features

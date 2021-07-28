@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { BadgeConfig, BadgesConfig } from '../types';
+import type { BadgeConfig } from '../types';
 import { getColor, getContrastColor, getTitle } from '../helpers/helpers';
 import styled from 'styled-components'
 
@@ -24,6 +24,8 @@ export const BadgeInner = styled.span<BadgeProps>`
   padding: 2px 5px;
   border-radius: 3px;
   font-size: 0.75rem;
+  text-transform: uppercase;
+  font-weight: bold;
 `;
 
 export const Badge: FC<BadgeProps> = ({ badge, config }) => (

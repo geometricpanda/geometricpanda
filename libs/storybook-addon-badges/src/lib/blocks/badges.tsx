@@ -1,7 +1,9 @@
 import React, { FC } from 'react';
 import { Separator, Spaced } from '@storybook/components';
 
-import { BadgesConfig } from '../types';
+import type { BadgesConfig } from '../types';
+
+import { defaultBadgesConfig } from '../shared';
 import { Badge } from './badge';
 
 interface BadgesProps {
@@ -9,7 +11,7 @@ interface BadgesProps {
   badgesConfig?: BadgesConfig;
 }
 
-export const Badges: FC<BadgesProps> = ({ badges = [], badgesConfig = {} }) => (
+export const Badges: FC<BadgesProps> = ({ badges = [], badgesConfig = defaultBadgesConfig }) => (
   <>
     <Separator />
     {badges.map((badge, index) =>

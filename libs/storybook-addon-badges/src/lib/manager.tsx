@@ -1,8 +1,9 @@
 import React from 'react';
 import { Combo, Consumer } from '@storybook/api';
+
+import type { BadgesConfig } from './types';
+import { defaultBadgesConfig, PARAM_BADGES_CONFIG_KEY, PARAM_BADGES_KEY } from './shared';
 import { Badges } from './blocks/badges';
-import { PARAM_BADGES_CONFIG_KEY, PARAM_BADGES_KEY } from './shared';
-import { BadgesConfig } from '@geometricpanda/storybook-addon-badges';
 
 
 export const Manager = () => (
@@ -10,7 +11,13 @@ export const Manager = () => (
     {({ api, state }: Combo) => {
       const story = api.getData(state.storyId, state.refId);
 
-      const badgesConfig = api.getCurrentParameter<BadgesConfig[]>(PARAM_BADGES_CONFIG_KEY) || {};
+      const customBadgesConfig = api.getCurrentParameter<BadgesConfig[]>(PARAM_BADGES_CONFIG_KEY) || {};
+
+      const badgesConfig = {
+        ...defaultBadgesConfig,
+        ...customBadgesConfig,
+      };
+
       const badges = api.getCurrentParameter<string[]>(PARAM_BADGES_KEY) || [];
 
       return story && badges.length
