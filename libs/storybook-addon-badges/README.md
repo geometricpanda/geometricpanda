@@ -61,7 +61,7 @@ I tend to define each key as an `enum` when using TypeScript, or even an `Object
 to avoid using magic strings.
 
 Don't worry if you haven't defined a badge which you use later, any badges which aren't recognised fall
-back to `#000` on `#FFF`.
+back to the default preconfigured grey.
 
 _Tip: If you prefer, instead of using the `addParameters` function, you can also
 export `const parameters` containing a full parameters object._
@@ -75,14 +75,49 @@ export enum BADGES {
 
 // .storybook/preview.js
 import {addParameters} from '@storybook/react';
-import {BADGES} from './constants';
 
 addParameters({
   badgesConfig: {
-    [BADGES.STATUS]: {
+    [BADGES.STATUS] : {
       contrast: '#FFF',
       color: '#018786',
       title: 'Status'
+    },
+  }
+});
+
+```
+
+## Preconfigured badges
+
+You can import a collection of preconfigured badges using the following import:
+```js
+import { BADGE } from '@geometricpanda/storybook-addon-badges';
+```
+
+You can then use these badges by passing in the following enum values:
+
+- `BADGE.DEFAULT`
+- `BADGE.BETA`
+- `BADGE.STABLE`
+- `BADGE.DEPRECATED`
+- `BADGE.EXPERIMENTAL`
+- `BADGE.NEEDS_REVISION`
+- `BADGE.OBSOLETE`
+
+Should you wish to override these styles you can do by configuring a badge with the same key:
+
+```typescript
+// .storybook/preview.js
+import {addParameters} from '@storybook/react';
+import { BADGE } from '@geometricpanda/storybook-addon-badges';
+
+addParameters({
+  badgesConfig: {
+    [BADGE.DEFAULT] : {
+      contrast: '#FFF',
+      color: '#018786',
+      title: 'New Title'
     },
   }
 });
@@ -97,10 +132,12 @@ addParameters({
 The following will apply the badges to all components within your Story:
 
 ```jsx
+import { BADGE } from '@geometricpanda/storybook-addon-badges';
+
 export default {
   title: 'Path/To/MyComponent',
   parameters: {
-    badges: ['deprecated', 'beta', 'other']
+    badges: [BADGE.DEPRECATED, BADGE.OBSOLETE]
   }
 };
 
@@ -116,6 +153,8 @@ export const ThirdComponent = Template.bind({});
 You can also selectively add badges to each Story:
 
 ```jsx
+import { BADGE } from '@geometricpanda/storybook-addon-badges';
+
 export default {
   title: 'Path/To/MyComponent',
 };
@@ -124,17 +163,17 @@ const Template = () => (<h1>Hello World</h1>);
 
 export const FirstComponent = Template.bind({});
 FirstComponent.parameters = {
-  badges: ['deprecated']
+  badges: [BADGE.DEPRECATED]
 };
 
 export const SecondComponent = Template.bind({});
 SecondComponent.parameters = {
-  badges: ['deprecated']
+  badges: [BADGE.STABLE]
 };
 
 export const ThirdComponent = Template.bind({});
 ThirdComponent.parameters = {
-  badges: ['other']
+  badges: [BADGE.OBSOLETE]
 };
 ```
 
@@ -143,10 +182,12 @@ ThirdComponent.parameters = {
 When applying Badges to all Stories you can selectively remove them too:
 
 ```jsx
+import { BADGE } from '@geometricpanda/storybook-addon-badges';
+
 export default {
   title: 'Path/To/MyComponent',
   parameters: {
-    badges: ['deprecated', 'beta', 'other']
+    badges: [BADGE.BETA]
   }
 };
 
@@ -168,7 +209,7 @@ using the `<Meta>` component.
 
 ```jsx
 import { Meta } from '@storybook/addon-docs/blocks';
-import { BADGES } from './constants';
+import { BADGE } from '@geometricpanda/storybook-addon-badges';
 
-<Meta title="Path/To/MyComponent" parameters={{ badges: [ BADGES.STATUS ] }} />
+<Meta title="Path/To/MyComponent" parameters={{ badges: [ BADGE.BETA ] }} />
 ```

@@ -22,12 +22,14 @@ exports[`Badge should render a styled badge from config 1`] = `
 }
 
 .c1 {
-  border: 1px solid #000;
-  color: #000;
-  background-color: #FFF;
+  border: 1px solid #474D66;
+  color: #474D66;
+  background-color: #EDEFF5;
   padding: 2px 5px;
   border-radius: 3px;
   font-size: 0.75rem;
+  text-transform: uppercase;
+  font-weight: bold;
 }
 
 <span
