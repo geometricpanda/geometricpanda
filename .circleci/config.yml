@@ -9,9 +9,9 @@ parameters:
 workflows:
   version: 2
 
-  build-and-test:
+  build:
     jobs:
-      - build-and-test-libraries:
+      - build-libraries:
           matrix:
             parameters:
               library:
@@ -20,7 +20,7 @@ workflows:
 
       - build-storybook:
           requires:
-            - build-and-test-libraries
+            - build-libraries
 
       - approve-storybook:
           type: approval
@@ -38,7 +38,7 @@ workflows:
               only: /release\/.*/
 
           requires:
-            - build-and-test-libraries
+            - build-libraries
 
       - deploy-libraries:
           filters:
@@ -112,7 +112,7 @@ jobs:
           paths:
             - dist/storybook
 
-  build-and-test-libraries:
+  build-libraries:
     working_directory: ~/geometricpanda
 
     docker:
@@ -142,12 +142,6 @@ jobs:
           command: yarn lint << parameters.library >>
 
       - run:
-          name: Test
-          command: yarn test << parameters.library >> --codeCoverage --reporters=default --reporters=jest-junit
-          environment:
-            JEST_JUNIT_OUTPUT_DIR: coverage/libs/<< parameters.library >>
-
-      - run:
           name: Build
           command: yarn build << parameters.library >>
 
@@ -160,9 +154,6 @@ jobs:
           root: ~/geometricpanda
           paths:
             - dist/libs/<< parameters.library >>
-
-      - store_test_results:
-          path: coverage/libs/<< parameters.library >>
 
   deploy-libraries:
     working_directory: ~/geometricpanda
@@ -186,8 +177,6 @@ jobs:
           name: Deploy Package
           command: |
             npm publish dist/libs/<< parameters.library >> --access public
-
-
 
 
   deploy-storybook:
