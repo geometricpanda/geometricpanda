@@ -1,6 +1,6 @@
 {
   "name": "@geometricpanda/storybook-addons",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "license": "MIT",
   "scripts": {
     "nx": "nx",
@@ -31,6 +31,7 @@
     "@storybook/api": "6.2.9",
     "@storybook/components": "6.2.9",
     "@storybook/theming": "6.2.9",
+    "caniuse-lite": "^1.0.30001258",
     "core-js": "^3.6.5",
     "document-register-element": "1.13.1",
     "react": "17.0.2",
@@ -53,6 +54,7 @@
     "@nrwl/web": "12.9.0",
     "@nrwl/workspace": "12.9.0",
     "@storybook/addon-docs": "6.2.9",
+    "@storybook/addon-essentials": "~6.3.0",
     "@storybook/react": "~6.3.0",
     "@svgr/webpack": "^5.4.0",
     "@testing-library/react": "11.2.5",
@@ -88,7 +90,6 @@
     "tsconfig-paths-webpack-plugin": "^3.5.1",
     "tslint": "~6.1.0",
     "typescript": "4.3.5",
-    "url-loader": "^3.0.0",
-    "@storybook/addon-essentials": "~6.3.0"
+    "url-loader": "^3.0.0"
   }
 }

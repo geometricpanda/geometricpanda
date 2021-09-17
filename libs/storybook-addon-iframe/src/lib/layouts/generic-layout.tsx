@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import styled from 'styled-components';
 
 const GenericIconLayoutWrapper = styled.div`
-  width: 200px;
+  width: 100px;
   margin-bottom: 1rem;
 `;
 

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from '@storybook/theming'
 
 export const IFrame = styled.iframe`
   background-color: white;
