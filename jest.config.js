@@ -1,7 +1,3 @@
-module.exports = {
-  projects: [
-    '<rootDir>/apps/geometricpanda',
-    '<rootDir>/libs/storybook-addon-badges',
-    '<rootDir>/libs/storybook-addon-iframe',
-  ],
-};
+const { getJestProjects } = require('@nrwl/jest');
+
+module.exports = { projects: getJestProjects() };
