@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import type { BadgeConfig } from '../types';
 import { getColor, getContrastColor, getTitle } from '../helpers/helpers';
-import styled from 'styled-components'
+import { styled } from '@storybook/theming'
 
 
 export const BadgeWrapper = styled.span`
@@ -23,9 +23,9 @@ export const BadgeInner = styled.span<BadgeProps>`
   background-color: ${({ badge, config }) => getContrastColor(badge, config)};
   padding: 2px 5px;
   border-radius: 3px;
-  font-size: 0.75rem;
-  text-transform: uppercase;
+  font-size: 0.625rem;
   font-weight: bold;
+  text-transform: uppercase;
 `;
 
 export const Badge: FC<BadgeProps> = ({ badge, config }) => (

@@ -2,7 +2,7 @@
   "name": "@geometricpanda/storybook-addon-badges",
   "author": "geometricpanda",
   "description": "A Storybook addon which allows you to add badges to you stories",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "license": "MIT",
   "keywords": [
     "storybook-addons",
@@ -37,7 +37,6 @@
     "@storybook/theming": "6.2.9",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-is": "17.0.2",
-    "styled-components": "5.2.1"
+    "react-is": "17.0.2"
   }
 }

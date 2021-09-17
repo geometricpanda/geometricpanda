@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from '@storybook/theming'
 
 export interface IFrameContainerProps {
   loaded?: boolean
@@ -7,6 +7,7 @@ export interface IFrameContainerProps {
 export const IFrameContainer = styled.div<IFrameContainerProps>`
   display: flex;
   height: 100%;
-  transition: transform 300ms;
-  transform: ${({ loaded }) => loaded ? 'scale(1)' : 'scale(0)'};
+  transition: opacity 300ms;
+  transform: translate(0);
+  opacity: ${({ loaded }) => loaded ? '1' : '0'};
 `;

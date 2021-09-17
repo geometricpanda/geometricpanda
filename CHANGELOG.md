@@ -4,6 +4,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## 0.0.5
 - __@geometricpanda/storybook-addon-badges__: Adds `react-is` to dependencies. Resolving [#23](https://github.com/geometricpanda/geometricpanda/issues/23)
+- __@geometricpanda/storybook-addon-badges__: Adds `react-dom` to dependencies. Resolving [#24](https://github.com/geometricpanda/geometricpanda/issues/24)
+- __@geometricpanda/storybook-addon-badges__: Updates style of badges to be less prominent
+- __@geometricpanda/storybook-addon-badges__: Replaces `styled-components` with `@storybook/theming`
+- __@geometricpanda/storybook-addon-iframe__: Changes animation style to fade
+- __@geometricpanda/storybook-addon-iframe__: Replaces `styled-components` with `@storybook/theming`
 
 ## 0.0.4
 

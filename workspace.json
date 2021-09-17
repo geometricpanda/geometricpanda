@@ -131,10 +131,6 @@
             "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
             "globals": [
               {
-                "moduleId": "styled-components",
-                "global": "styled-components"
-              },
-              {
                 "moduleId": "react",
                 "global": "react"
               },
@@ -209,10 +205,6 @@
             "babelConfig": "@nrwl/react/plugins/bundle-babel",
             "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
             "globals": [
-              {
-                "moduleId": "styled-components",
-                "global": "styled-components"
-              },
               {
                 "moduleId": "react",
                 "global": "react"
