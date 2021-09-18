@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
-import type { BadgeConfig } from '../types';
+import { WithBadgeTooltip } from './withBadgeTooltip';
+import type { BadgeProps } from '../types';
 import { getColor, getContrastColor, getTitle } from '../helpers/helpers';
-import { styled } from '@storybook/theming'
-
+import { styled } from '@storybook/theming';
 
 export const BadgeWrapper = styled.span`
   align-items: center;
@@ -11,11 +11,6 @@ export const BadgeWrapper = styled.span`
   height: 100%;
   user-select: none;
 `;
-
-interface BadgeProps {
-  badge: string;
-  config: BadgeConfig,
-}
 
 export const BadgeInner = styled.span<BadgeProps>`
   border: 1px solid ${({ badge, config }) => getColor(badge, config)};
@@ -28,11 +23,12 @@ export const BadgeInner = styled.span<BadgeProps>`
   text-transform: uppercase;
 `;
 
+const BadgeInnerWithTooltip = WithBadgeTooltip(BadgeInner);
+
 export const Badge: FC<BadgeProps> = ({ badge, config }) => (
   <BadgeWrapper>
-    <BadgeInner badge={badge} config={config}>
+    <BadgeInnerWithTooltip badge={badge} config={config}>
       {getTitle(badge, config)}
-    </BadgeInner>
+    </BadgeInnerWithTooltip>
   </BadgeWrapper>
 );
-
