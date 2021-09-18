@@ -1,21 +1,23 @@
-import { BadgeConfig } from '../types';
+import { BadgeConfig, TooltipConfig } from '../types';
 import { defaultBadgeConfig } from '../shared';
 
-export const getBadgeConfig =
-  (badge: string, config: BadgeConfig): BadgeConfig => ({
-    ...defaultBadgeConfig,
-    title: badge,
-    ...config,
-  });
+export const getBadgeConfig = (
+  badge: string,
+  config: BadgeConfig
+): BadgeConfig => ({
+  ...defaultBadgeConfig,
+  title: badge,
+  ...config,
+});
 
-export const getColor =
-  (badge: string, config: BadgeConfig): string =>
-    getBadgeConfig(badge, config).color;
+export const getColor = (badge: string, config: BadgeConfig): string =>
+  getBadgeConfig(badge, config).color;
 
-export const getContrastColor =
-  (badge: string, config: BadgeConfig): string =>
-    getBadgeConfig(badge, config).contrast;
+export const getContrastColor = (badge: string, config: BadgeConfig): string =>
+  getBadgeConfig(badge, config).contrast;
 
-export const getTitle =
-  (badge: string, config: BadgeConfig): string =>
-    getBadgeConfig(badge, config).title;
+export const getTitle = (badge: string, config: BadgeConfig): string =>
+  getBadgeConfig(badge, config).title;
+
+export const getTooltip = (badge: string, config: BadgeConfig): TooltipConfig =>
+  getBadgeConfig(badge, config).tooltip;

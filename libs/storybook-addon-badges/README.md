@@ -44,12 +44,36 @@ addParameters({
     beta: {
       contrast: '#FFF',
       color: '#018786',
-      title: 'Beta'
+      title: 'Beta',
+      tooltip: 'Be ready to receive updates frequently.'
     },
     deprecated: {
       contrast: '#FFF',
       color: '#6200EE',
       title: 'Deprecated'
+    }
+  }
+});
+```
+
+Optionally, you can define more complex tooltips for any of your badges.
+
+```js
+addParameters({
+  badgesConfig: {
+    beta: {
+      ...betaConfig,
+      tooltip: {
+        title: 'This is Beta',
+        desc: 'Be ready to receive updates frequently and leave a feedback',
+        links: [
+          {title: 'Read more', href: 'http://path/to/your/docs'},
+          {title: 'Leave feedback', onClick: () => {alert('thanks for the feedback')}}]
+      }
+    },
+    deprecated: {
+      ...deprecatedConfig,
+      tooltip: 'This component is depricated, pleave avoid using it.'
     }
   }
 });
