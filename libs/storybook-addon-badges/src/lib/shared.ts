@@ -1,4 +1,4 @@
-import type { BadgeConfig } from './types';
+import type { BadgesConfig, BadgeConfig } from './types';
 
 export const ADDON_ID = '@geometricpanda/storybook-addon-badges';
 export const ADDON_TITLE = 'Storybook Addon Badges';
@@ -16,42 +16,59 @@ export enum BADGE {
   DEPRECATED = 'deprecated',
 }
 
-export const defaultBadgesConfig = {
+export const defaultBadgesConfig: BadgesConfig = {
   [BADGE.DEFAULT]: {
     title: 'Badge',
-    contrast: '#EDEFF5',
-    color: '#474D66'
   },
   [BADGE.BETA]: {
     title: 'Beta',
-    contrast: '#D6E0FF',
-    color: '#2952CC'
+    styles: {
+      backgroundColor: '#D6E0FF',
+      borderColor: '#2952CC',
+      color: '#2952CC',
+    },
   },
   [BADGE.STABLE]: {
     title: 'Stable',
-    contrast: '#DCF2EA',
-    color: '#317159'
+    styles: {
+      backgroundColor: '#DCF2EA',
+      borderColor: '#317159',
+      color: '#317159',
+    },
   },
   [BADGE.NEEDS_REVISION]: {
     title: 'Needs Revision',
-    contrast: '#FFEFD2',
-    color: '#66460D'
+    styles: {
+      backgroundColor: '#FFEFD2',
+      borderColor: '#66460D',
+      color: '#66460D',
+    },
   },
   [BADGE.OBSOLETE]: {
     title: 'Obsolete',
-    contrast: '#F9DADA',
-    color: '#7D2828'
+    styles: {
+      backgroundColor: '#F9DADA',
+      borderColor: '#7D2828',
+      color: '#7D2828',
+    },
   },
   [BADGE.EXPERIMENTAL]: {
     title: 'Experimental',
-    contrast: '#E7E4F9',
-    color: '#6E62B6'
+    styles: {
+      backgroundColor: '#E7E4F9',
+      borderColor: '#6E62B6',
+      color: '#6E62B6',
+    },
   },
   [BADGE.DEPRECATED]: {
     title: 'Deprecated',
-    contrast: '#F8E3DA',
-    color: '#85462B'
-  }
+    styles: {
+      backgroundColor: '#F8E3DA',
+      borderColor: '#85462B',
+      color: '#85462B',
+    },
+  },
 };
 
-export const defaultBadgeConfig: BadgeConfig = defaultBadgesConfig[BADGE.DEFAULT];
+export const defaultBadgeConfig: BadgeConfig =
+  defaultBadgesConfig[BADGE.DEFAULT];
