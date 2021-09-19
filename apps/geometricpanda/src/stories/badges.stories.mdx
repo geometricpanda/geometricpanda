@@ -67,6 +67,33 @@ addParameters({
 });
 ```
 
+
+### Tooltips
+
+Optionally, you can define more complex tooltips for any of your badges.
+
+```js
+import { BADGE, defaultBadgesConfig } from '@geometricpanda/storybook-addon-badges';
+
+addParameters({
+  badgesConfig: {
+    [BADGE.BETA]: {
+      ...defaultBadgesConfig[BADGE.BETA],
+      tooltip: {
+        title: 'This is Beta',
+        desc: 'Be ready to receive updates frequently and leave a feedback',
+        links: [
+          {title: 'Read more', href: 'http://path/to/your/docs'},
+          {title: 'Leave feedback', onClick: () => {alert('thanks for the feedback')}}]
+      }
+    },
+    [BADGE.BETA]: {
+      ...defaultBadgesConfig[BADGE.DEPRECATED],
+      tooltip: 'This component is deprecated, please avoid using it.'
+    }
+  }
+});
+```
 The key for each badge will be what's used throughout storybook to invoke that badge.
 
 I tend to define each key as an `enum` when using TypeScript, or even an `Object` in plain JavaScript

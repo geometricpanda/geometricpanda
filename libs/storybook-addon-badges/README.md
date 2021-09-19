@@ -56,6 +56,8 @@ addParameters({
 });
 ```
 
+### Tooltips
+
 Optionally, you can define more complex tooltips for any of your badges.
 
 ```js
@@ -73,7 +75,7 @@ addParameters({
     },
     deprecated: {
       ...deprecatedConfig,
-      tooltip: 'This component is depricated, pleave avoid using it.'
+      tooltip: 'This component is deprecated, please avoid using it.'
     }
   }
 });
