@@ -2,6 +2,11 @@
 All notable changes to this project will be documented in this file
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.1.0
+- __@geometricpanda/storybook-addon-badges__: Integrates with Storybook tooltips.
+
+Thanks to [clbagrat](https://github.com/clbagrat).
+
 ## 0.0.5
 - __@geometricpanda/storybook-addon-badges__: Adds `react-is` to dependencies. Resolving [#23](https://github.com/geometricpanda/geometricpanda/issues/23)
 - __@geometricpanda/storybook-addon-badges__: Adds `react-dom` to dependencies. Resolving [#24](https://github.com/geometricpanda/geometricpanda/issues/24)
