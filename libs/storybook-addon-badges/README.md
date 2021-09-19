@@ -10,11 +10,13 @@ your [Storybook](https://storybook.js.org) app.
 ## Installation
 
 NPM:
+
 ```shell
 npm install @geometricpanda/storybook-addon-badges --save
 ```
 
 Yarn:
+
 ```shell
 yarn add @geometricpanda/storybook-addon-badges
 ```
@@ -27,9 +29,7 @@ In your `.storybook/main.js` you'll need to load `@geometricpanda/storybook-addo
 // .storybook/main.js
 module.exports = {
   stories: [],
-  addons: [
-    '@geometricpanda/storybook-addon-badges'
-  ],
+  addons: ['@geometricpanda/storybook-addon-badges'],
 };
 ```
 
@@ -37,22 +37,27 @@ Optionally, you can define custom badge styles in `.storybook/preview.js`.
 
 ```js
 // .storybook/preview.js
-import {addParameters} from '@storybook/react';
+import { addParameters } from '@storybook/react';
 
 addParameters({
   badgesConfig: {
     beta: {
-      contrast: '#FFF',
-      color: '#018786',
+      styles: {
+        backgroundColor: '#FFF',
+        borderColor: '#018786',
+        color: '#018786',
+      },
       title: 'Beta',
-      tooltip: 'Be ready to receive updates frequently.'
     },
     deprecated: {
-      contrast: '#FFF',
-      color: '#6200EE',
-      title: 'Deprecated'
-    }
-  }
+      styles: {
+        backgroundColor: '#FFF',
+        borderColor: '#6200EE',
+        color: '#6200EE',
+      },
+      title: 'Deprecated',
+    },
+  },
 });
 ```
 
@@ -69,15 +74,21 @@ addParameters({
         title: 'This is Beta',
         desc: 'Be ready to receive updates frequently and leave a feedback',
         links: [
-          {title: 'Read more', href: 'http://path/to/your/docs'},
-          {title: 'Leave feedback', onClick: () => {alert('thanks for the feedback')}}]
-      }
+          { title: 'Read more', href: 'http://path/to/your/docs' },
+          {
+            title: 'Leave feedback',
+            onClick: () => {
+              alert('thanks for the feedback');
+            },
+          },
+        ],
+      },
     },
     deprecated: {
       ...deprecatedConfig,
-      tooltip: 'This component is deprecated, please avoid using it.'
-    }
-  }
+      tooltip: 'This component is deprecated, please avoid using it.',
+    },
+  },
 });
 ```
 
@@ -92,31 +103,33 @@ back to the default preconfigured grey.
 _Tip: If you prefer, instead of using the `addParameters` function, you can also
 export `const parameters` containing a full parameters object._
 
-
 ```typescript
 // .storybook/constants.js
 export enum BADGES {
-  STATUS = 'status'
+  STATUS = 'status',
 }
 
 // .storybook/preview.js
-import {addParameters} from '@storybook/react';
+import { addParameters } from '@storybook/react';
 
 addParameters({
   badgesConfig: {
-    [BADGES.STATUS] : {
-      contrast: '#FFF',
-      color: '#018786',
-      title: 'Status'
+    [BADGES.STATUS]: {
+      styles: {
+        backgroundColor: '#FFF',
+        borderColor: '#018786',
+        color: '#018786',
+      },
+      title: 'Status',
     },
-  }
+  },
 });
-
 ```
 
 ## Preconfigured badges
 
 You can import a collection of preconfigured badges using the following import:
+
 ```js
 import { BADGE } from '@geometricpanda/storybook-addon-badges';
 ```
@@ -135,21 +148,45 @@ Should you wish to override these styles you can do by configuring a badge with 
 
 ```typescript
 // .storybook/preview.js
-import {addParameters} from '@storybook/react';
-import { BADGE } from '@geometricpanda/storybook-addon-badges';
+import { addParameters } from '@storybook/react';
 
 addParameters({
   badgesConfig: {
-    [BADGE.DEFAULT] : {
-      contrast: '#FFF',
-      color: '#018786',
-      title: 'New Title'
+    [BADGES.STATUS]: {
+      styles: {
+        backgroundColor: '#FFF',
+        borderColor: '#018786',
+        color: '#018786',
+      },
+      title: 'Status',
     },
-  }
+  },
 });
-
 ```
 
+Valid options for the `styles` configuration are:
+
+- `backgroundColor`
+- `borderColor`
+- `borderRadius`
+- `borderStyle`
+- `borderWidth`
+- `color`
+- `fontSize`
+- `fontFamily`
+- `fontWeight`
+- `lineHeight`
+- `textTransform`
+- `paddingInline`
+- `paddingBlock`
+
+#### Deprecation Notice
+
+The previous `color` and `contrast` properties have been deprecated and are due to be removed in 1.0.0.
+Please migrate to the `styles` property.
+
+By setting a `styles` property which conflicts with a prior `color` or `contrast` value, the `styles` property will
+take precedence.
 
 ## Component Story Format (CSF)
 
@@ -163,11 +200,11 @@ import { BADGE } from '@geometricpanda/storybook-addon-badges';
 export default {
   title: 'Path/To/MyComponent',
   parameters: {
-    badges: [BADGE.DEPRECATED, BADGE.OBSOLETE]
-  }
+    badges: [BADGE.DEPRECATED, BADGE.OBSOLETE],
+  },
 };
 
-const Template = () => (<h1>Hello World</h1>);
+const Template = () => <h1>Hello World</h1>;
 
 export const FirstComponent = Template.bind({});
 export const SecondComponent = Template.bind({});
@@ -185,21 +222,21 @@ export default {
   title: 'Path/To/MyComponent',
 };
 
-const Template = () => (<h1>Hello World</h1>);
+const Template = () => <h1>Hello World</h1>;
 
 export const FirstComponent = Template.bind({});
 FirstComponent.parameters = {
-  badges: [BADGE.DEPRECATED]
+  badges: [BADGE.DEPRECATED],
 };
 
 export const SecondComponent = Template.bind({});
 SecondComponent.parameters = {
-  badges: [BADGE.STABLE]
+  badges: [BADGE.STABLE],
 };
 
 export const ThirdComponent = Template.bind({});
 ThirdComponent.parameters = {
-  badges: [BADGE.OBSOLETE]
+  badges: [BADGE.OBSOLETE],
 };
 ```
 
@@ -213,11 +250,11 @@ import { BADGE } from '@geometricpanda/storybook-addon-badges';
 export default {
   title: 'Path/To/MyComponent',
   parameters: {
-    badges: [BADGE.BETA]
-  }
+    badges: [BADGE.BETA],
+  },
 };
 
-const Template = () => (<h1>Hello World</h1>);
+const Template = () => <h1>Hello World</h1>;
 
 export const FirstComponent = Template.bind({});
 export const SecondComponent = Template.bind({});
@@ -237,5 +274,5 @@ using the `<Meta>` component.
 import { Meta } from '@storybook/addon-docs/blocks';
 import { BADGE } from '@geometricpanda/storybook-addon-badges';
 
-<Meta title="Path/To/MyComponent" parameters={{ badges: [ BADGE.BETA ] }} />
+<Meta title="Path/To/MyComponent" parameters={{ badges: [BADGE.BETA] }} />;
 ```

@@ -21,3 +21,21 @@ export const getTitle = (badge: string, config: BadgeConfig): string =>
 
 export const getTooltip = (badge: string, config: BadgeConfig): TooltipConfig =>
   getBadgeConfig(badge, config).tooltip;
+
+export const getBadgeCustomProperty = (name: string, suffix: string) => {
+  const normalisedName = name.replace(/[^a-z0-9]/g, (str) => {
+    const char = str.charCodeAt(0);
+
+    if (char == 32) {
+      return '-';
+    }
+
+    if (char >= 65 && char <= 90) {
+      return '_' + str.toLowerCase();
+    }
+
+    return '__' + ('000' + char.toString(16)).slice(-4);
+  });
+
+  return `--badge-${normalisedName}-${suffix}`;
+};

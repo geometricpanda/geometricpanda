@@ -18,9 +18,9 @@ export const WithBadgeTooltip =
 
     return tooltipData ? (
       <WithTooltip tooltip={<TooltipMessage {...tooltipMessageProps} />}>
-        <Component badge={badge} config={config} {...(rest as T)} />
+        <Component badge={badge} {...(rest as T)} />
       </WithTooltip>
     ) : (
-      <Component badge={badge} config={config} {...(rest as T)} />
+      <Component badge={badge} {...(rest as T)} />
     );
   };
