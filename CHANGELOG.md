@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixes
 
 - **@geometricpanda/storybook-addon-badges**: Lists storybook as a peer dependency. Resolving [#32](https://github.com/geometricpanda/geometricpanda/issues/32)
+- **@geometricpanda/storybook-addon-badges**: Uses camel case for customisable properties. Resolving [#30](https://github.com/geometricpanda/geometricpanda/issues/30)
 - **@geometricpanda/storybook-addon-iframe**: Lists storybook as a peer dependency. Resolving [#32](https://github.com/geometricpanda/geometricpanda/issues/32)
 
 ## 0.2.0
