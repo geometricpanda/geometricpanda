@@ -31,12 +31,14 @@
   },
   "homepage": "https://geometricpanda-storybook.netlify.app/?path=/story/addon-badges-docs--page",
   "dependencies": {
-    "@storybook/addons": "6.2.9",
-    "@storybook/api": "6.2.9",
-    "@storybook/components": "6.2.9",
-    "@storybook/theming": "6.2.9",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "react-is": "17.0.2"
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-is": "^17.0.2"
+  },
+  "peerDependencies": {
+    "@storybook/addons": "^6.2.9",
+    "@storybook/api": "^6.2.9",
+    "@storybook/components": "^6.2.9",
+    "@storybook/theming": "^6.2.9"
   }
 }
