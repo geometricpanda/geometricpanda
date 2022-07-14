@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.2.2
+
+### Fixes
+- **@geometricpanda/storybook-addon-badges**: Lists storybook addons as dependency. Resolving [#35](https://github.com/geometricpanda/geometricpanda/issues/35)
+- **@geometricpanda/storybook-addon-iframe**: Lists storybook addons as dependency. Resolving [#35](https://github.com/geometricpanda/geometricpanda/issues/35)
+
 ## 0.2.1
 
 ### Fixes
