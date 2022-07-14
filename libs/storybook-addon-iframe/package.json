@@ -2,7 +2,7 @@
   "name": "@geometricpanda/storybook-addon-iframe",
   "author": "geometricpanda",
   "description": "A Storybook addon which allows you to add iFrames to Stories",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "license": "MIT",
   "keywords": [
     "storybook-addons",
