@@ -6,9 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## 0.2.2
 
 ### Fixes
-- **@geometricpanda/storybook-addon-badges**: Lists storybook addons as dependency. Resolving [#35](https://github.com/geometricpanda/geometricpanda/issues/35)
-- **@geometricpanda/storybook-addon-iframe**: Lists storybook addons as dependency. Resolving [#35](https://github.com/geometricpanda/geometricpanda/issues/35)
-
+- **@geometricpanda/storybook-addon-badges**: Lists storybook addons as a dependency. Resolving [#35](https://github.com/geometricpanda/geometricpanda/issues/35)
+- **@geometricpanda/storybook-addon-badges**: Lists styled components as a dependency. Resolving [#34](https://github.com/geometricpanda/geometricpanda/issues/34)
+- **@geometricpanda/storybook-addon-iframe**: Lists storybook addons as a dependency. Resolving [#35](https://github.com/geometricpanda/geometricpanda/issues/35)
+- **@geometricpanda/storybook-addon-iframe**: Lists styled components as a dependency. Resolving [#34](https://github.com/geometricpanda/geometricpanda/issues/34)
+- 
 ## 0.2.1
 
 ### Fixes
